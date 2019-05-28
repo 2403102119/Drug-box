@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- QRCode scanner color begin -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="result_point_color">#C0FFFF00</color>
+    <color name="laser_color">#0F0</color>
+    <color name="corner_color">#00FF00</color>
+    <!-- QRCode scanner color end -->
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="greenText">#70ADC7</color>
+    <color name="lowGreenText">#9970ADC7</color>
+    <color name="deepGreenText">#00688B</color>
+    <color name="backGrey">#FDFAF0</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="gray">#666666</color>
+    <color name="red">#FF2E2E</color>
+    <color name="normalText">#333333</color>
+    <color name="lineColor">#f1f1f1</color>
+    <color name="orangeText">#5DC800</color>
+    <color name="redText">#DF170E</color>
+    <color name="blackText">#121212</color>
+    <color name="editBg">#eeeeee</color>
+    <color name="warningRed">#F11A1A</color>
+    <color name="appBg">#f7f7f7</color>
+    <color name="grayText">#989898</color>
+    <color name="mainEngineCheckBg">#f5f5f5</color>
+    <color name="redBg">#E1645D</color>
+    <color name="hintColor">#999999</color>
+    <color name="orangeBg">#FBC84E</color>
+    <color name="press">#cccccc</color>
+    <color name="lowGreen">#9BE823</color>
+    <color name="barDiagramLine">#DDDDDD</color>
+    <color name="alphaBarDiagramLine">#88DDDDDD</color>
+    <color name="white_normal">#ffffffff</color>
+    <color name="login_guide_login_btn_bg">#04BEBD</color>
+    <color name="blueText">#0079fd</color>
+</resources>

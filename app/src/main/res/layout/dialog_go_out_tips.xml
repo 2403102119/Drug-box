@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/shape_gray_bg_10"
+    android:orientation="vertical"
+    android:layout_width="280dp"
+    android:layout_height="170dp">
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="170dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/rl_go_out_tips"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="120dp">
+
+            <TextView
+                android:id="@+id/tv_input_title"
+                android:layout_marginTop="20dp"
+                android:text="@string/go_out_remind"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FE2B2B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/go_out_tip1"
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="@string/go_out_tips2"
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_go_out_tips"
+            android:layout_below="@id/rl_go_out_tips"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d5d6d8"/>
+
+        <TextView
+            android:id="@+id/tv_tips_confirm"
+            android:layout_below="@id/view_go_out_tips"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/blueText"
+            android:textSize="18sp"
+            android:text="@string/save"
+            android:layout_width="match_parent"
+            android:layout_height="49dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

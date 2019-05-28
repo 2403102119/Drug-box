@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RemindSettingActivity">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/host_number"
+                android:textSize="15sp"
+                android:textColor="@color/normalText"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_host_number"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="165615165615"
+                android:textSize="15sp"
+                android:textColor="@color/greenText"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_host_name"
+                android:layout_width="wrap_content"
+                android:text="张三"
+                android:textSize="15sp"
+                android:textColor="@color/normalText"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_box_manager"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.tckkj.medicinebox.view.AutoLocateHorizontalView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"/>
+
+        <com.zhouwei.mzbanner.MZBannerView
+            android:id="@+id/banner_medicine_warehouse"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:open_mz_mode="true"
+            app:middle_page_cover="false"
+            app:canLoop="true"
+            app:indicatorAlign="center"
+            />
+
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/current_drug_storehouse"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_medicine_warehouse_code"
+                    android:text="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/lineColor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_medicine_name"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/press_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/drug_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_medicine_name"
+                    android:text="@string/is_not_set"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:src="@mipmap/back_gray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/lineColor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_drug_expired_date"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/press_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/drug_expiry_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_drug_expired_date"
+                    android:text="@string/is_not_set"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:src="@mipmap/back_gray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/lineColor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_add_medicine_number"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/press_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/dosage_for_this_addition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_add_medicine_number"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray"
+                    android:gravity="right"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:src="@mipmap/back_gray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="@color/lineColor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/surplus_medicine"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_surplus_medicine_number"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textSize="12sp"
+            android:textColor="@color/warningRed"
+            android:gravity="center_vertical"
+            android:text="@string/note_box_manager"
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_medicine_number_everyday"
+            android:background="@drawable/press_bg"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/normalText"
+                android:text="@string/daily_dose"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_medicine_number_everyday"
+                android:text="0"
+                android:textSize="14sp"
+                android:textColor="@color/gray"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:src="@mipmap/back_gray"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13dp"
+                android:layout_width="7dp"
+                android:layout_height="13dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lineColor"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_take_someday"
+            android:background="@drawable/press_bg"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/normalText"
+                android:text="@string/not_everyday_take"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_take_medicine_weekdays"
+                android:layout_marginLeft="5dp"
+                android:text="@string/is_not_set"
+                android:textSize="14sp"
+                android:textColor="@color/gray"
+                android:gravity="right"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:src="@mipmap/back_gray"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13dp"
+                android:layout_width="7dp"
+                android:layout_height="13dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_take_medicine_time"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/press_bg"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/normalText"
+                android:text="@string/taking_medicine_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_add_medicine_time"
+                android:text="@string/add"
+                android:gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/gray"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lineColor"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"/>
+
+        <com.tckkj.medicinebox.view.NiceRecyclerView
+            android:id="@+id/nrv_remind_time"
+            android:layout_marginBottom="20dp"
+            app:listDirection="VERTICAL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tv_box_manager_save"
+        android:text="@string/save"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:background="@drawable/selector_green_bg"
+        android:layout_height="45dp" />
+
+</LinearLayout>

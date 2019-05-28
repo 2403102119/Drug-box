@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NiceRecyclerView">
+        <!--RecyclerView 是listview还是gridview-->
+        <attr name="listDirection">
+            <!--gridview-->
+            <enum name="HORIZONTAL" value="0" />
+            <!--listview-->
+            <enum name="VERTICAL" value="1" />
+            <!--横向滚动-->
+            <enum name="HORIZONTAL_SCROLL" value="2" />
+            <!--纵向瀑布流-->
+            <enum name="HORIZONTAL_WATERFALL" value="3" />
+            <!--横向瀑布流-->
+            <enum name="VERTICAL_WATERFALL" value="4" />
+        </attr>
+        <!--列表为空提示语-->
+        <attr name="emptyText" format="string" />
+        <!--为空提示语第一次是否显示-->
+        <attr name="isFirstShowEmptyText" format="boolean" />
+        <!--为空提示语是否显示-->
+        <attr name="isShowEmptyText" format="boolean" />
+        <!--gridview每行显示数量-->
+        <attr name="gridNum" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="lineSpacing" format="dimension" />
+        <attr name="maxLine" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="WheelView">
+        <attr name="itemVisibleNum" format="integer"/>
+
+        <attr name="textColorOuter" format="color" />
+        <attr name="textSizeOuter" format="dimension" />
+        <attr name="textColorCenter" format="color" />
+        <attr name="textSizeCenter" format="dimension" />
+
+        <attr name="lineColor" format="color" />
+
+        <attr name="isLoop" format="boolean"/>
+        <attr name="lineSpaceingDimens" format="dimension"/>
+
+        <attr name="wheelGravity" format="enum" >
+            <enum name="left" value="234"/>
+            <enum name="center" value="354"/>
+            <enum name="right" value="894"/>
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="ViewfinderView">
+        <attr name="corner_color" format="color" />
+        <attr name="laser_color" format="color" />
+        <attr name="frame_color" format="color" />
+        <attr name="mask_color" format="color" />
+        <attr name="result_point_color" format="color" />
+        <attr name="result_color" format="color" />
+        <attr name="label_text_color" format="color" />
+        <attr name="label_text" format="string" />
+        <attr name="label_text_size" format="float" />
+    </declare-styleable>
+
+</resources>
+

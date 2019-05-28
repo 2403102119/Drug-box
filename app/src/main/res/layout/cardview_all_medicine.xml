@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_marginTop="5dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textSize="14sp"
+            android:textColor="@color/normalText"
+            android:text="@string/drug_quantity_overview"
+            android:background="@color/editBg"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="56"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/redBg"
+                android:gravity="center"
+                android:text="@string/medicine"
+                android:layout_width="0dp"
+                android:layout_weight="155"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/redBg"
+                android:gravity="center"
+                android:text="@string/start_time"
+                android:layout_width="0dp"
+                android:layout_weight="196"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/redBg"
+                android:gravity="center"
+                android:text="@string/used"
+                android:layout_width="0dp"
+                android:layout_weight="93"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <com.tckkj.medicinebox.view.NiceRecyclerView
+            android:id="@+id/nrv_all_medicine"
+            app:listDirection="VERTICAL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

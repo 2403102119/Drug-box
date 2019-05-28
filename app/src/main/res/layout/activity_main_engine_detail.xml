@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainEngineDetailActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_main_engine_two"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/host_number"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_host_number1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="165615165615"
+                    android:textSize="15sp"
+                    android:textColor="@color/greenText"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_host_name1"
+                    android:layout_width="wrap_content"
+                    android:text="张三"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="35dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/drug_storehouse_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_temperature1"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/orangeText"
+                    android:text="19℃"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_temperature_state1"
+                    android:textSize="16sp"
+                    android:textColor="@color/orangeText"
+                    android:text="正常"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/drug_warehouse_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_humidity1"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/redText"
+                    android:text="99%"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_humidity_state1"
+                    android:textSize="16sp"
+                    android:textColor="@color/redText"
+                    android:text="偏高"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/current_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_current_pattern1"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/orangeText"
+                    android:text="自动"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/log_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_log_message1"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"
+                    android:text="您的15：00药已经配好，请尽快服药"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_main_engine_one"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/host_number"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_host_number2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="165615165615"
+                    android:textSize="15sp"
+                    android:textColor="@color/greenText"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_host_name2"
+                    android:layout_width="wrap_content"
+                    android:text="张三"
+                    android:textSize="15sp"
+                    android:textColor="@color/normalText"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="35dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/drug_storehouse_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_temperature2"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/orangeText"
+                    android:text="19℃"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_temperature_state2"
+                    android:textSize="16sp"
+                    android:textColor="@color/orangeText"
+                    android:text="正常"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/drug_warehouse_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_humidity2"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/redText"
+                    android:text="99%"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_warehouse_humidity_state2"
+                    android:textSize="16sp"
+                    android:textColor="@color/redText"
+                    android:text="偏高"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/current_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_current_pattern2"
+                    android:layout_marginLeft="35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/orangeText"
+                    android:text="自动"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/normalText"
+                    android:text="@string/log_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_log_message2"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"
+                    android:text="您的15：00药已经配好，请尽快服药"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.UnTakeEverydayActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_monday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Monday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_monday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+
+    <LinearLayout
+        android:id="@+id/ll_tuesday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Tuesday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_tuesday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+
+    <LinearLayout
+        android:id="@+id/ll_wednesday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Wednesday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_wednesday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+
+    <LinearLayout
+        android:id="@+id/ll_thursday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Thursday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_thursday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+
+    <LinearLayout
+        android:id="@+id/ll_friday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Friday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_friday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+
+    <LinearLayout
+        android:id="@+id/ll_saturday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Saturday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_saturday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"/>
+
+    <LinearLayout
+        android:id="@+id/ll_sunday"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:text="@string/Sunday"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cb_sunday"
+            android:background="@drawable/selector_language"
+            android:button="@null"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_marginTop="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_all_medicine_title"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textSize="14sp"
+            android:textColor="@color/normalText"
+            android:text="@string/undosed_ratio"
+            android:background="@color/editBg"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
+        <com.tckkj.medicinebox.view.PieChartView
+            android:id="@+id/pc_all_medicine"
+            android:layout_below="@id/tv_all_medicine_title"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="@color/white"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            app:circleRadius="65dp"
+            app:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_below="@id/tv_all_medicine_title"
+            android:layout_toRightOf="@id/pc_all_medicine"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="@drawable/shape_red_bg_5"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/normalText"
+                android:layout_marginLeft="13dp"
+                android:text="@string/didnt_take_medicine_on_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

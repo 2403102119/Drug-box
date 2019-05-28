@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GoOutSettingActivity">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/host_number"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_host_number"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="165615165615"
+            android:textColor="@color/greenText"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_host_name"
+            android:layout_width="wrap_content"
+            android:text="张三"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_go_out_setting_scroll"/>
+
+</LinearLayout>

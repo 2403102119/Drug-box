@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="272dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:id="@+id/ll_user_message"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/user_message"
+                android:layout_marginTop="18dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_marginTop="20dp"
+                android:text="@string/userinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_medicine_box_manage"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/medicine_box_manage"
+                android:layout_marginTop="18dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_marginTop="20dp"
+                android:text="@string/medicine_management"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_remind_setting"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/remind_setting"
+                android:layout_marginTop="18dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_marginTop="20dp"
+                android:text="@string/remind_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:id="@+id/ll_temporary_get_medicine"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/temporary_get_medicine"
+                android:layout_marginTop="18dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_marginTop="20dp"
+                android:text="@string/temporary_get_medicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_go_out_setting"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/go_out_setting"
+                android:layout_marginTop="18dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_marginTop="20dp"
+                android:text="@string/set_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_medicine_box_pandect"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/medicine_box_pandect"
+                android:layout_marginTop="18dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/normalText"
+                android:layout_marginTop="20dp"
+                android:text="@string/kit_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

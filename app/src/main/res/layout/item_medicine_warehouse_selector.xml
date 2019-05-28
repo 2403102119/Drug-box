@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="140dp"
+    android:layout_height="90dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <RelativeLayout android:id="@+id/rl_medicine_warehouse_mid"
+        android:background="@drawable/shape_white_bg_10"
+        android:layout_centerInParent="true"
+        android:layout_width="140dp"
+        android:layout_height="90dp">
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:text="@string/drug_storehouse_number"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:textColor="@color/greenText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/img_medicine_warehouse_code"
+            android:src="@mipmap/temporary_get_medicine_one"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="19dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="27dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+
+</RelativeLayout>
+

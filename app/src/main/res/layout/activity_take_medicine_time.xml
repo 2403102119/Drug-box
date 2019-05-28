@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context=".activity.TakeMedicineTimeActivity">
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/greenText"/>
+    
+    <com.tckkj.medicinebox.view.wheelview.WheelView
+        android:id="@+id/wheel_minute"
+        android:layout_marginLeft="100dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        app:textColorCenter="@color/greenText"
+        app:lineSpaceingDimens="8dp"
+        app:itemVisibleNum="5"
+        app:lineColor="@color/gray"
+        app:textSizeCenter="25sp"
+        app:textSizeOuter="17sp"
+        app:isLoop="true"
+        app:textColorOuter="@color/hintColor" />
+
+    <com.tckkj.medicinebox.view.wheelview.WheelView
+        android:id="@+id/wheel_second"
+        android:layout_marginRight="100dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        app:textColorCenter="@color/greenText"
+        app:lineSpaceingDimens="8dp"
+        app:itemVisibleNum="5"
+        app:lineColor="@color/gray"
+        app:textSizeCenter="25sp"
+        app:textSizeOuter="17sp"
+        app:isLoop="true"
+        app:textColorOuter="@color/hintColor" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/greenText"/>
+
+</LinearLayout>

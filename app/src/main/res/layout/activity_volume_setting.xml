@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/shape_white_bg_10"
+    android:layout_marginTop="25dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="453dp"
+    android:gravity="center_horizontal"
+    tools:context=".activity.VolumeSettingActivity">
+
+    <TextView
+        android:id="@+id/tv_volume_percent"
+        android:textSize="15sp"
+        android:textColor="@color/normalText"
+        android:layout_marginTop="45dp"
+        android:text="20%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_volume_five"
+        android:background="@drawable/shape_low_gray_top_5"
+        android:layout_marginTop="25dp"
+        android:layout_width="150dp"
+        android:layout_height="35dp" />
+    
+    <Button
+        android:id="@+id/btn_volume_four"
+        android:background="@color/editBg"
+        android:layout_marginTop="12dp"
+        android:layout_width="150dp"
+        android:layout_height="35dp" />
+
+    <Button
+        android:id="@+id/btn_volume_three"
+        android:layout_marginTop="12dp"
+        android:background="@color/editBg"
+        android:layout_width="150dp"
+        android:layout_height="35dp" />
+
+    <Button
+        android:id="@+id/btn_volume_two"
+        android:layout_marginTop="12dp"
+        android:background="@color/editBg"
+        android:layout_width="150dp"
+        android:layout_height="35dp" />
+
+    <Button
+        android:id="@+id/btn_volume_one"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/shape_low_green_bottom_5"
+        android:layout_width="150dp"
+        android:layout_height="35dp" />
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/img_volume_add"
+            android:src="@mipmap/icon_add"
+            android:layout_width="60dp"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/img_volume_minus"
+            android:src="@mipmap/icon_minus"
+            android:layout_width="60dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

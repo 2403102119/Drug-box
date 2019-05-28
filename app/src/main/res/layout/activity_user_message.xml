@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UserMessageActivity">
+
+    <TextView
+        android:textSize="12sp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/warningRed"
+        android:gravity="center_vertical"
+        android:text="@string/note_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="41dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_user_message_name"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+
+        <TextView
+            android:text="@string/nickname"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="*"
+            android:textSize="15sp"
+            android:textColor="@color/warningRed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_user_message_name"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="@string/is_not_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/back_gray"
+            android:layout_width="7dp"
+            android:layout_height="13dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_message_sex"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+
+        <TextView
+            android:text="@string/sex"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="*"
+            android:textSize="15sp"
+            android:textColor="@color/warningRed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_user_message_sex"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="@string/is_not_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/back_gray"
+            android:layout_width="7dp"
+            android:layout_height="13dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_message_birthday"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+
+        <TextView
+            android:text="@string/date_of_birth"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="*"
+            android:textSize="15sp"
+            android:textColor="@color/warningRed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_user_message_birthday"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="@string/is_not_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/back_gray"
+            android:layout_width="7dp"
+            android:layout_height="13dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_message_age"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+
+        <TextView
+            android:text="@string/age"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="*"
+            android:textSize="15sp"
+            android:textColor="@color/warningRed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_user_message_age"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="@string/is_not_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/back_gray"
+            android:layout_width="7dp"
+            android:layout_height="13dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_emergency_contact_phone_one"
+        android:background="@color/white"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+
+        <TextView
+            android:text="@string/emergency_contact_number1"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="*"
+            android:textSize="15sp"
+            android:textColor="@color/warningRed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_emergency_contact_phone_one"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="@string/is_not_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/back_gray"
+            android:layout_width="7dp"
+            android:layout_height="13dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_emergency_contact_phone_two"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="45dp">
+
+        <TextView
+            android:text="@string/emergency_contact_number2"
+            android:textSize="15sp"
+            android:textColor="@color/normalText"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_emergency_contact_phone_two"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="@string/is_not_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/back_gray"
+            android:layout_width="7dp"
+            android:layout_height="13dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:paddingLeft="19dp"
+        android:paddingRight="19dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_user_message_save"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:background="@drawable/selector_green_bg_22"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btn_user_message_empty"
+            android:layout_alignParentRight="true"
+            android:text="@string/empty"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:background="@drawable/selector_green_bg_22"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
