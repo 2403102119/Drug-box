@@ -51,6 +51,8 @@ public class App extends Application {
     public static String languageType = "";                 //当前选择语言
     public static String hostOid = "";                      //当前选择的主机id
     public static String hostCode = "";                      //当前选择的主机编号
+    public static boolean isBindAlias = false;          //是否已绑定别名
+
 
     /**
      * 维护Activity 的list

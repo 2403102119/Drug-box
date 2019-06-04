@@ -539,6 +539,7 @@ public class UserClient {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setView(view);
+        App.isBindAlias = false;
         final AlertDialog dialog = builder.create();
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
