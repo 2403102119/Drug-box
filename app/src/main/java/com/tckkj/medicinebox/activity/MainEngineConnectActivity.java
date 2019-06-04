@@ -3,6 +3,8 @@ package com.tckkj.medicinebox.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +46,8 @@ public class MainEngineConnectActivity extends BaseActivity {
     private String searchHostOid = "";
     private Dialog exitDialog;
 
+    public static MainEngineConnectActivity instants;
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContainer(R.layout.activity_main_engine_connect);
@@ -54,6 +58,8 @@ public class MainEngineConnectActivity extends BaseActivity {
         img_back.setVisibility(View.GONE);
         backText.setVisibility(View.VISIBLE);
         rightTxt.setVisibility(View.VISIBLE);
+
+        instants = this;
 
         rl_main_engine_one = findViewById(R.id.rl_main_engine_one);
         rl_main_engine_two = findViewById(R.id.rl_main_engine_two);
@@ -77,6 +83,8 @@ public class MainEngineConnectActivity extends BaseActivity {
         if (App.islogin && null != App.loginMsg) {
             judgeHostConnect();
         }
+
+
     }
 
     @Override
@@ -217,6 +225,7 @@ public class MainEngineConnectActivity extends BaseActivity {
 
                 SPUtil.saveData(MainEngineConnectActivity.this, "islogin", false);
                 App.islogin = false;
+                App.isBindAlias = false;
 
                 startActivity(new Intent(MainEngineConnectActivity.this, LoginActivity.class));
                 App.finishRealAllActivity();
@@ -247,7 +256,7 @@ public class MainEngineConnectActivity extends BaseActivity {
     /*
     * 判断主机连接情况
     * */
-    private void judgeHostConnect(){
+    public void judgeHostConnect(){
         if (StringUtil.isSpace(App.loginMsg.host1_oid)){
             rl_main_engine_one.setVisibility(View.GONE);
         }else {
@@ -292,7 +301,7 @@ public class MainEngineConnectActivity extends BaseActivity {
     /*
      * App7/根据token获取最新账户信息 >
      * */
-    private void getNewUserMessage(){
+    public void getNewUserMessage(){
         if (NetUtil.isNetWorking(this)){
             ThreadPoolManager.getInstance().getNetThreadPool().execute(new Runnable() {
                 @Override

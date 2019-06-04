@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,7 +29,11 @@ import com.tckkj.medicinebox.view.SpinerPopWindow;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.JPushMessage;
+import cn.jpush.android.api.TagAliasCallback;
 import okhttp3.Call;
 
 public class LoginActivity extends BaseActivity implements AdapterView.OnItemClickListener {
@@ -38,6 +43,58 @@ public class LoginActivity extends BaseActivity implements AdapterView.OnItemCli
     private ClearEditText cet_phone, cet_login_password;
     private SpinerPopWindow<String> mSpinerPopWindow;
     private List<String> countryList = new ArrayList<>();
+    private static final String TAG = "获取.成功";
+    /*
+    给用户设置别名
+     */
+    private static final int MSG_SET_ALIAS = 1001;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                    Log.d(TAG, "Set alias in handler.");
+                    // 调用 JPush 接口来设置别名。
+                    JPushInterface.setAliasAndTags(getApplicationContext(),
+                            (String) msg.obj,
+                            null,
+                            mAliasCallback);
+                    Log.i("11111111111", "gotResult: " + new JPushMessage().toString());
+                    break;
+                default:
+                    Log.i(TAG, "Unhandled msg - " + msg.what);
+            }
+        }
+    };
+
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs ;
+            switch (code) {
+                case 0:
+                    logs = "Set tag and alias success";
+                    Log.i(TAG, logs);
+                    SPUtil.saveData(LoginActivity.this,"isBindAlias",true);
+
+                    App.isBindAlias = true;
+
+                    break;
+                case 6002:
+                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+                    Log.i(TAG, logs);
+                    // 延迟 60 秒来调用 Handler 设置别名
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
+                    break;
+                default:
+                    logs = "Failed with errorCode = " + code;
+                    Log.e(TAG, logs);
+            }
+//            toast(logs);
+        }
+    };
+
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -157,7 +214,7 @@ public class LoginActivity extends BaseActivity implements AdapterView.OnItemCli
                             Bean.LoginMsgAll data = new Gson().fromJson(result, Bean.LoginMsgAll.class);
 
                             if (1 == data.status){
-
+                                mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, data.model.oid));
                                 //如果未连接主机则跳转连接主机界面,如果已选择跳转药盒设置界面
                                 if (App.isMainEngineSelect){
                                     startActivity(new Intent(LoginActivity.this, MedicineBoxSettingActivity.class));
