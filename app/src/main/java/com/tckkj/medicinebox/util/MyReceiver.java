@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.tckkj.medicinebox.App;
+import com.tckkj.medicinebox.activity.MainEngineConnectActivity;
+
 import org.json.JSONObject;
 
 import cn.jpush.android.api.JPushInterface;
@@ -55,6 +58,9 @@ public class MyReceiver extends BroadcastReceiver {
         Log.d(TAG, "message : " + message);
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
         Log.d(TAG, "extras : " + extras);
+
+        MainEngineConnectActivity.instants.judgeHostConnect();
+
     }
 
     private void openNotification(Context context, Bundle bundle) {
@@ -62,35 +68,21 @@ public class MyReceiver extends BroadcastReceiver {
         String myValue = "";
         try {
             JSONObject extrasJson = new JSONObject(extras);
-            myValue = extrasJson.optString("key");
+            myValue = extrasJson.optString("type");
         } catch (Exception e) {
             Log.w(TAG, "Unexpected: extras is not a valid json", e);
             return;
         }
-        /*if (App.islogin) {
-            if ("0".equals(myValue)) {      //订单消息
-                String orderID = (String) bundle.get("orderID");
-                String orderStatus = (String) bundle.get("orderStatus");
-                Intent mIntent;
-                if (!StringUtil.isSpace(orderID) && !StringUtil.isSpace(orderStatus)) {
-                    if ("0".equals(orderStatus)) {
-                        mIntent = new Intent(context, ChargingActivity.class);
-                    } else {
-                        mIntent = new Intent(context, OrderDetailActivity.class);
-                    }
-                    mIntent.putExtra("orderID", orderID);
-                } else {
-                    mIntent = new Intent(context, MyMessageActivity.class);
-                }
+        if (App.islogin) {
+            if ("0".equals(myValue)) {
 
-                mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(mIntent);
-            } else if ("1".equals(myValue)) {        //系统消息
-                Intent mIntent = new Intent(context, MyMessageActivity.class);
+            } else if ("1".equals(myValue)) {//系统消息
+                Intent mIntent = new Intent(context, MainEngineConnectActivity.class);
                 mIntent.putExtras(bundle);
                 mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(mIntent);
             }
-        }*/
+        }
+
     }
 }
