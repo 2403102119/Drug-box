@@ -81,6 +81,10 @@
             <intent-filter >
                 <action android:name="cn.jpush.android.intent.DaemonService" />
                 <category android:name="com.tckkj.medicinebox"/>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
             </intent-filter>
         </service>
 
@@ -185,7 +189,7 @@
         <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <!-- Required. AppKey copied from Portal -->
-        <meta-data android:name="JPUSH_APPKEY" android:value="3dbd43263513829ca4943950"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="526d279e398cb18b96c06503"/>
 
         <activity android:name=".MainActivity" />
         <activity android:name=".base.BaseActivity" />
@@ -197,7 +201,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainEngineDetailActivity" />
-        <activity android:name=".activity.MainEngineConnectActivity" />
+        <activity android:name=".activity.MainEngineConnectActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".activity.MedicineBoxSettingActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.UserMessageActivity" />
