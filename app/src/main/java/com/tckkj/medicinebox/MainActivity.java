@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,14 +18,76 @@ import com.tckkj.medicinebox.fragment.OneFragment;
 import com.tckkj.medicinebox.fragment.ThreeFragment;
 import com.tckkj.medicinebox.fragment.TwoFragment;
 import com.tckkj.medicinebox.util.MUIToast;
+import com.tckkj.medicinebox.util.SPUtil;
 import com.tckkj.medicinebox.view.CommonProgressDialog;
 
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.JPushMessage;
+import cn.jpush.android.api.TagAliasCallback;
+/*
+* Author:李迪迦
+* Date：2019.6.4
+* */
 public class MainActivity extends BaseActivity {
     private Fragment oneFragment, twoFragment, threeFragment, fourFragment;
     RadioGroup rg_main;
     RadioButton rb_one,rb_two,rb_three,rb_four;
 
     private CommonProgressDialog pBar;
+    private static final String TAG = "获取.成功";
+
+    /*
+   给用户设置别名
+    */
+    private static final int MSG_SET_ALIAS = 1001;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                    Log.d(TAG, "Set alias in handler.");
+                    // 调用 JPush 接口来设置别名。
+                    JPushInterface.setAliasAndTags(getApplicationContext(),
+                            (String) msg.obj,
+                            null,
+                            mAliasCallback);
+                    Log.i("123456789","11111"+msg.obj);
+                    Log.i("11111111111", "gotResult: " + new JPushMessage().toString());
+                    break;
+                default:
+                    Log.i(TAG, "Unhandled msg - " + msg.what);
+            }
+        }
+    };
+
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs ;
+            switch (code) {
+                case 0:
+                    logs = "Set tag and alias success";
+                    Log.i(TAG, logs);
+                    SPUtil.saveData(MainActivity.this,"isBindAlias",true);
+
+                    App.isBindAlias = true;
+                    break;
+                case 6002:
+                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+                    Log.i(TAG, logs);
+                    // 延迟 60 秒来调用 Handler 设置别名
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
+                    break;
+                default:
+                    logs = "Failed with errorCode = " + code;
+                    Log.e(TAG, logs);
+            }
+//            toast(logs);
+        }
+    };
 
     @Override
     protected void initView(Bundle savedInstanceState) {
