@@ -59,7 +59,7 @@ public class MyReceiver extends BroadcastReceiver {
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
         Log.d(TAG, "extras : " + extras);
 
-        MainEngineConnectActivity.instants.judgeHostConnect();
+        MainEngineConnectActivity.instants.getNewUserMessage();
 
     }
 
