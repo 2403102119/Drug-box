@@ -194,7 +194,7 @@ BoxManagerActivity extends BaseActivity {
             public void onItemClick(int position) {
                 curPosition = position;
                 String timeStr = timeList.get(position);
-                String time[] = timeStr.split("#");
+                String time[] = timeStr.split(":");
 
                 Intent remindIntent = new Intent(BoxManagerActivity.this, TakeMedicineTimeActivity.class);
                 remindIntent.putExtra("iaAdd", false);
@@ -563,6 +563,14 @@ BoxManagerActivity extends BaseActivity {
                                 }else {
                                     tv_surplus_medicine_number.setText(data.model.allowance);
                                 }
+
+                                String str=data.model.takingTime;
+                                String[] strArry=str.split("[#]");
+                                for (int i = 0; i < strArry.length; i++) {
+                                    timeList.add(strArry[i]);
+                                }
+
+
                                 timeList.clear();
                                 adapter.notifyDataSetChanged();
 

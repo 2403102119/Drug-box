@@ -109,7 +109,7 @@
     <string name="surplus_medicine">剩余药品量</string>
     <string name="daily_dose">每次服用剂量</string>
     <string name="everyday">每天</string>
-    <string name="not_everyday_take">非日服</string>
+    <string name="not_everyday_take">服药天数</string>
     <string name="taking_medicine_time">服药时间</string>
     <string name="add">添加</string>
     <string name="drug_storehouse_number">药仓编号</string>

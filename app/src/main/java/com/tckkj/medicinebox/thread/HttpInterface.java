@@ -324,13 +324,13 @@ public class HttpInterface {
     }
 
     /*
-     * App21/根据主机号及药仓序号获取药仓数据 >
+     * App10/根据主机号及药仓序号获取药仓数据 >
      * */
     public void getStorehouseData(String medicineSerialNumber, String oid, MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.getStorehouseData);
         try {
             userClient.AddParam("token", App.token);
-            userClient.AddParam("medicineSerialNumber", medicineSerialNumber);
+            userClient.AddParam("model.medicineSerialNumber", medicineSerialNumber);
             userClient.executePost(callback, loadingDialog, context);
         } catch (Exception e) {
             e.printStackTrace();
