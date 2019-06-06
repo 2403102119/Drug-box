@@ -331,6 +331,9 @@ public class MainEngineConnectActivity extends BaseActivity {
                                         (data.model.host2_oid.equals(App.hostOid) && "2".equals(data.model.host2_connectionState))){
                                     App.hostOid = "";
                                 }
+                                if (data.model.serialNumber.equals("0"))
+                                    startActivity(new Intent(MainEngineConnectActivity.this, MainEngineConnectActivity.class));
+
 
                                 if (StringUtil.isSpace(App.hostOid)){       //如果尚未选择已选中主机
                                     if ("1".equals(App.loginMsg.host1_connectionState)){    //如果主机1是连接状态，默认显示主机1选中

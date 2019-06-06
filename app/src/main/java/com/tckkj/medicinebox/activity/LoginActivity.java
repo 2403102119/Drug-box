@@ -220,10 +220,10 @@ public class LoginActivity extends BaseActivity implements AdapterView.OnItemCli
                             if (1 == data.status){
                                 mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, data.model.oid));
                                 //如果未连接主机则跳转连接主机界面,如果已选择跳转药盒设置界面
-                                if (App.isMainEngineSelect){
-                                    startActivity(new Intent(LoginActivity.this, MedicineBoxSettingActivity.class));
-                                }else {
+                                if (data.model.serialNumber.equals("0")){
                                     startActivity(new Intent(LoginActivity.this, MainEngineConnectActivity.class));
+                                }else {
+                                    startActivity(new Intent(LoginActivity.this, MedicineBoxSettingActivity.class));
                                 }
                                 App.finishRealAllActivity();
                                 SPUtil.saveData(LoginActivity.this, "islogin", true);
