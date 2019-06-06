@@ -35,7 +35,11 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.JPushMessage;
 import cn.jpush.android.api.TagAliasCallback;
 import okhttp3.Call;
-
+/*
+*
+* Author：李迪迦
+* Date：2019.6.4
+* */
 public class LoginActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     private TextView tv_forget_password, tv_phone_choose, tv_user_agreement;
     private Button btn_login;

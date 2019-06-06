@@ -27,7 +27,10 @@ import com.tckkj.medicinebox.util.StringUtil;
 import com.tckkj.medicinebox.view.ClearEditText;
 
 import okhttp3.Call;
-
+/*
+* Author：李迪迦
+* Date：2019.6.4
+* */
 public class MainEngineConnectActivity extends BaseActivity {
     private RelativeLayout rl_main_engine_one, rl_main_engine_two,rl_main_engine;
     private Button btn_connect_main_engine_one, btn_connect_main_engine_two, btn_connect_main_engine,
@@ -45,7 +48,7 @@ public class MainEngineConnectActivity extends BaseActivity {
     //搜索到的主机oid
     private String searchHostOid = "";
     private Dialog exitDialog;
-
+    public String mType = "";
     public static MainEngineConnectActivity instants;
 
     @Override
@@ -83,6 +86,9 @@ public class MainEngineConnectActivity extends BaseActivity {
         if (App.islogin && null != App.loginMsg) {
             judgeHostConnect();
         }
+        if (mType.equals("1")){
+            getNewUserMessage();
+        }
 
 
     }
@@ -113,14 +119,17 @@ public class MainEngineConnectActivity extends BaseActivity {
             backText.setVisibility(View.GONE);
             img_back.setVisibility(View.VISIBLE);
         }
+        mType = getIntent().getStringExtra("type");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rightTxt:     //进入主屏
-                if ("1".equals(App.loginMsg.host1_connectionState) || "1".equals(App.loginMsg.host2_connectionState)){      //连接主机后方可跳转到主屏
+                if ("1".equals(App.loginMsg.host1_connectionState) || "1".equals(App.loginMsg.host2_connectionState)){//连接主机后方可跳转到主屏
+
                     startActivity(new Intent(MainEngineConnectActivity.this, MedicineBoxSettingActivity.class));
+                    getNewUserMessage();
                     App.finishRealAllActivity();
                 }else {
                     toast(getString(R.string.please_connect_to_the_host_first));

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.tckkj.medicinebox.App;
@@ -42,6 +43,7 @@ public class MedicineBoxSettingActivity extends BaseActivity {
     private TextView tv_main_engine_name_one, tv_main_engine_name_two, tv_main_engine_content_one, tv_main_engine_content_two;
     private TextView tv_host_number, tv_host_name;
     private Dialog exitDialog;
+
 
     private long lastExitTime = 0l;
 
@@ -81,6 +83,7 @@ public class MedicineBoxSettingActivity extends BaseActivity {
         rl_main_engine_two = findViewById(R.id.rl_main_engine_two);
 
         dl_medicine_box_setting = findViewById(R.id.dl_medicine_box_setting);
+        MainEngineConnectActivity.instants.getNewUserMessage();
           //TODO
         //如果主机1未连接，则不显示，下同理
         if (!"1".equals(App.loginMsg.host1_connectionState)){
@@ -89,6 +92,34 @@ public class MedicineBoxSettingActivity extends BaseActivity {
         if (!"1".equals(App.loginMsg.host2_connectionState)){
             rl_main_engine_two.setVisibility(View.GONE);
         }
+
+        if (App.loginMsg.serialNumber.equals("1")){
+            rl_main_engine_one.setBackgroundResource(R.color.mainEngineCheckBg);
+            img_main_engine_icon_one.setImageResource(R.mipmap.main_engine_check_yes);
+            tv_main_engine_name_one.setTextColor(getResources().getColor(R.color.greenText));
+            tv_main_engine_content_one.setTextColor(getResources().getColor(R.color.greenText));
+
+            rl_main_engine_two.setBackgroundResource(R.color.white);
+            img_main_engine_icon_two.setImageResource(R.mipmap.main_engine_check_no);
+            tv_main_engine_name_two.setTextColor(getResources().getColor(R.color.gray));
+            tv_main_engine_content_two.setTextColor(getResources().getColor(R.color.gray));
+            tv_host_number.setText(App.loginMsg.host1_hostNumber);
+        }if (App.loginMsg.serialNumber.equals("2")){
+
+            rl_main_engine_two.setBackgroundResource(R.color.mainEngineCheckBg);
+            img_main_engine_icon_two.setImageResource(R.mipmap.main_engine_check_yes);
+            tv_main_engine_name_two.setTextColor(getResources().getColor(R.color.greenText));
+            tv_main_engine_content_two.setTextColor(getResources().getColor(R.color.greenText));
+
+            rl_main_engine_one.setBackgroundResource(R.color.white);
+            img_main_engine_icon_one.setImageResource(R.mipmap.main_engine_check_no);
+            tv_main_engine_name_one.setTextColor(getResources().getColor(R.color.gray));
+            tv_main_engine_content_one.setTextColor(getResources().getColor(R.color.gray));
+            tv_host_number.setText(App.loginMsg.host2_hostNumber);
+
+        }
+
+
 
     }
 
@@ -191,6 +222,8 @@ public class MedicineBoxSettingActivity extends BaseActivity {
                 SPUtil.saveData(this, "hostCode", App.loginMsg.host1_hostNumber);
                 App.hostOid = App.loginMsg.host1_oid;
                 App.hostCode = App.loginMsg.host1_hostNumber;
+                tv_host_number.setText(App.loginMsg.host1_hostNumber);
+                getCut(App.loginMsg.host1_oid);
 
                 break;
             case R.id.rl_main_engine_two:
@@ -209,7 +242,8 @@ public class MedicineBoxSettingActivity extends BaseActivity {
                 SPUtil.saveData(this, "hostCode", App.loginMsg.host2_hostNumber);
                 App.hostOid = App.loginMsg.host2_oid;
                 App.hostCode = App.loginMsg.host2_hostNumber;
-
+                getCut(App.loginMsg.host2_oid);
+                tv_host_number.setText(App.loginMsg.host2_hostNumber);
                 break;
             case R.id.back:
                 if (dl_medicine_box_setting.isDrawerOpen(ll_medicine_box_more)){
@@ -332,4 +366,39 @@ public class MedicineBoxSettingActivity extends BaseActivity {
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
+
+    /*
+     * App9/切换主机 >
+     * */
+    private void getCut(final String oid){
+        if (NetUtil.isNetWorking(this)){
+            ThreadPoolManager.getInstance().getNetThreadPool().execute(new Runnable() {
+                @Override
+                public void run() {
+                    httpInterface.getCut(oid, new MApiResultCallback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            Toast.makeText(MedicineBoxSettingActivity.this,"切换成功",Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        @Override
+                        public void onFail(String response) {
+
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception exception) {
+                        }
+
+                        @Override
+                        public void onTokenError(String response) {
+
+                        }
+                    });
+                }
+            });
+        }
+    }
+
 }

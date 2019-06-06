@@ -324,6 +324,7 @@
             android:paddingRight="15dp"/>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/ll_take_someday"
             android:background="@drawable/press_bg"
             android:paddingLeft="15dp"

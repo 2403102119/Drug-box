@@ -87,7 +87,7 @@
     <string name="push_advice">推送建议</string>
     <string name="report_information">报表信息</string>
     <string name="about_us">关于我们</string>
-    <string name="return_link">切换绑定</string>
+    <string name="return_link">绑定主机</string>
     <string name="host1">主机1</string>
     <string name="host2">主机2</string>
     <string name="man">男</string>
@@ -107,7 +107,7 @@
     <string name="drug_expiry_date">药品到期日</string>
     <string name="dosage_for_this_addition">本次加药量</string>
     <string name="surplus_medicine">剩余药品量</string>
-    <string name="daily_dose">每日服用剂量</string>
+    <string name="daily_dose">每次服用剂量</string>
     <string name="everyday">每天</string>
     <string name="not_everyday_take">非日服</string>
     <string name="taking_medicine_time">服药时间</string>

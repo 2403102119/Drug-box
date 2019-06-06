@@ -128,6 +128,8 @@ BoxManagerActivity extends BaseActivity {
         list.add(R.mipmap.box_check_yes_four);
         list.add(R.mipmap.box_check_yes_five);
         list.add(R.mipmap.box_check_yes_six);
+        list.add(R.mipmap.box_check_yes_seven);
+        list.add(R.mipmap.box_check_yes_eight);
 
         banner_medicine_warehouse.pause();
         banner_medicine_warehouse.setIndicatorVisible(false);
@@ -161,9 +163,16 @@ BoxManagerActivity extends BaseActivity {
                     case 5:
                         list.set(5, R.mipmap.box_check_yes_six);
                         break;
+                    case 6:
+                        list.set(6,R.mipmap.box_check_yes_seven);
+                        break;
+                    case 7:
+                        list.set(7,R.mipmap.box_check_yes_eight);
+                        break;
+
                 }
                 tv_medicine_warehouse_code.setText(position + 1 + "");
-//                getStorehouseDataByNumber(position + 1 + "");
+                getStorehouseDataByNumber(position + 1 + "");
             }
 
             @Override
@@ -185,7 +194,7 @@ BoxManagerActivity extends BaseActivity {
             public void onItemClick(int position) {
                 curPosition = position;
                 String timeStr = timeList.get(position);
-                String time[] = timeStr.split(":");
+                String time[] = timeStr.split("#");
 
                 Intent remindIntent = new Intent(BoxManagerActivity.this, TakeMedicineTimeActivity.class);
                 remindIntent.putExtra("iaAdd", false);
@@ -412,6 +421,8 @@ BoxManagerActivity extends BaseActivity {
         list.set(3, R.mipmap.box_check_no_four);
         list.set(4, R.mipmap.box_check_no_five);
         list.set(5, R.mipmap.box_check_no_six);
+        list.set(6,R.mipmap.box_check_yes_seven);
+        list.set(7,R.mipmap.box_check_yes_eight);
     }
 
     /**
@@ -465,7 +476,7 @@ BoxManagerActivity extends BaseActivity {
     }
 
     /*
-     * App18/药仓清空数据 >
+     * App12/药仓清空数据 >
      * */
     private void deleteStorehouseData(final String oid){
         if (NetUtil.isNetWorking(this)){
@@ -478,6 +489,7 @@ BoxManagerActivity extends BaseActivity {
                             Bean data = new Gson().fromJson(result, Bean.class);
 
                             if (1 == data.status){
+
                                 tv_medicine_name.setText(getString(R.string.is_not_set));
                                 tv_drug_expired_date.setText(getString(R.string.is_not_set));
                                 tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
@@ -512,7 +524,7 @@ BoxManagerActivity extends BaseActivity {
     }
 
     /*
-     * App21/根据主机号及药仓序号获取药仓数据 >
+     * App10/获取药仓信息 >
      * */
     private void getStorehouseData(final String medicineSerialNumber, final String oid){
         if (NetUtil.isNetWorking(this)){
@@ -522,14 +534,35 @@ BoxManagerActivity extends BaseActivity {
                     httpInterface.getStorehouseData(medicineSerialNumber, oid, new MApiResultCallback() {
                         @Override
                         public void onSuccess(String result) {
-                            Bean data = new Gson().fromJson(result, Bean.class);
+                            Bean.Kit_information data = new Gson().fromJson(result, Bean.Kit_information.class);
 
                             if (1 == data.status){
-                                tv_medicine_name.setText(getString(R.string.is_not_set));
-                                tv_drug_expired_date.setText(getString(R.string.is_not_set));
+                                if (data.model.name.equals("")){
+
+                                    tv_medicine_name.setText(getString(R.string.is_not_set));
+                                }else {
+                                    tv_medicine_name.setText(data.model.name);
+                                }
+                                if (data.model.termOfValidity.equals("")){
+
+                                    tv_drug_expired_date.setText(getString(R.string.is_not_set));
+                                }else {
+                                    tv_drug_expired_date.setText(data.model.termOfValidity);
+                                }
+
                                 tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
                                 tv_add_medicine_number.setText("0");
-                                tv_medicine_number_everyday.setText("0");
+                                if (data.model.dose.equals("")){
+
+                                    tv_medicine_number_everyday.setText("0");
+                                }else {
+                                    tv_medicine_number_everyday.setText(data.model.dose);
+                                }
+                                if (data.model.allowance.equals("")){
+                                    tv_surplus_medicine_number.setText("0");
+                                }else {
+                                    tv_surplus_medicine_number.setText(data.model.allowance);
+                                }
                                 timeList.clear();
                                 adapter.notifyDataSetChanged();
 

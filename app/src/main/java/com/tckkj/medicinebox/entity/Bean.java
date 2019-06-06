@@ -37,6 +37,7 @@ public class Bean {
         public String token;
         public String oid;
         public String account;
+        public String serialNumber;
     }
 
     /*
@@ -99,5 +100,23 @@ public class Bean {
     * */
     public class MedicineStorehouse{
         public String oid;
+    }
+    /**
+     *药盒管理实体类
+     * */
+     public class Kit_information{
+        public kit_message model;
+        public int status;
+        public String message;
+    }
+    public class kit_message{
+         public String takingTime;
+         public String allowance;
+         public String days;
+         public String oid;
+         public String name;
+         public String termOfValidity;
+         public String serialNumber;
+         public String dose;
     }
 }

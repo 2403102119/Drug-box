@@ -134,7 +134,7 @@ public class HttpInterface {
     }
 
     /*
-     * App7/根据token获取最新账户信息 >
+     * App5/根据token获取最新账户信息 >
      * */
     public void getNewUserMessage(MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.getNewUserMessage);
@@ -147,7 +147,7 @@ public class HttpInterface {
     }
 
     /*
-     * App8/根据主机编号搜索主机列表 >
+     * App6/根据主机编号搜索主机列表 >
      * */
     public void getHostListByNumber(String hostNumber, MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.getHostListByNumber);
@@ -161,7 +161,7 @@ public class HttpInterface {
     }
 
     /*
-     * App9/连接主机 >
+     * App7/连接主机 >
      * */
     public void connectHost(String type, String oid, MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.connectHost);
@@ -176,10 +176,23 @@ public class HttpInterface {
     }
 
     /*
-     * App10/查看主机详情 >
+     * App8/查看主机详情 >
      * */
     public void getHostMessage(String oid,MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.getHostMessage);
+        try {
+            userClient.AddParam("token", App.token);
+            userClient.AddParam("model.oid", oid);
+            userClient.executePost(callback, loadingDialog, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+     * App9/切换主机>
+     * */
+    public void getCut(String oid,MApiResultCallback callback) {
+        UserClient userClient = new UserClient(UriUtil.getCut);
         try {
             userClient.AddParam("token", App.token);
             userClient.AddParam("model.oid", oid);
@@ -249,7 +262,7 @@ public class HttpInterface {
     }
 
     /*
-     * App17/药仓新增、添加或更换药品 >
+     * App11/药仓新增、添加或更换药品 >
      * */
     public void updateMedicineStorehouse(String dosage, String oid, String name, String dose,
                                          String termOfValidity, String wayOfTaking, String takingTime,
@@ -262,7 +275,7 @@ public class HttpInterface {
             userClient.AddParam("model.name", name);
             userClient.AddParam("model.dose", dose);
             userClient.AddParam("model.termOfValidity", termOfValidity);
-            userClient.AddParam("remindingTime.wayOfTaking", wayOfTaking);
+            userClient.AddParam("model.days", wayOfTaking);
             userClient.AddParam("remindingTime.takingTime", takingTime);
             userClient.executePost(callback, loadingDialog, context);
         } catch (Exception e) {
@@ -271,7 +284,7 @@ public class HttpInterface {
     }
 
     /*
-     * App18/药仓清空数据 >
+     * App12/药仓清空数据 >
      * */
     public void deleteStorehouseData(String oid, MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.deleteStorehouseData);
@@ -318,7 +331,6 @@ public class HttpInterface {
         try {
             userClient.AddParam("token", App.token);
             userClient.AddParam("medicineSerialNumber", medicineSerialNumber);
-            userClient.AddParam("model.oid", oid);
             userClient.executePost(callback, loadingDialog, context);
         } catch (Exception e) {
             e.printStackTrace();
