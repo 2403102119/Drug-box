@@ -81,8 +81,13 @@ public class LanguageSelectActivity extends BaseActivity {
             } else {
                 //如果不是第一次打开应用,判断是否登录，如果登录跳转主机选择界面，否则跳转登录界面、
                 if (App.islogin) {
-                    startActivity(new Intent(LanguageSelectActivity.this, MainEngineConnectActivity.class));
-                    finish();
+                    if (App.serialNumber.equals("1")||App.serialNumber.equals("2")){
+                        startActivity(new Intent(LanguageSelectActivity.this, MedicineBoxSettingActivity.class));
+                        finish();
+                    }else if (App.serialNumber.equals("0")){
+                        startActivity(new Intent(LanguageSelectActivity.this, MainEngineConnectActivity.class));
+                        finish();
+                    }
                 }else {
                     startActivity(new Intent(LanguageSelectActivity.this, LoginActivity.class));
                     finish();

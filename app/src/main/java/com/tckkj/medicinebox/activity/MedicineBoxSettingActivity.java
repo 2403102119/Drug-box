@@ -83,7 +83,6 @@ public class MedicineBoxSettingActivity extends BaseActivity {
         rl_main_engine_two = findViewById(R.id.rl_main_engine_two);
 
         dl_medicine_box_setting = findViewById(R.id.dl_medicine_box_setting);
-        MainEngineConnectActivity.instants.getNewUserMessage();
           //TODO
         //如果主机1未连接，则不显示，下同理
         if (!"1".equals(App.loginMsg.host1_connectionState)){
@@ -171,6 +170,7 @@ public class MedicineBoxSettingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+//        MainEngineConnectActivity.instants.getNewUserMessage();
 
     }
 

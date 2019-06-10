@@ -3,6 +3,7 @@ package com.tckkj.medicinebox.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,9 @@ public class RemindTimeAdapter extends RecyclerView.Adapter<RemindTimeAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, final int position) {
         holder.tv_remind_number.setText(position + 1 + "");
-        holder.tv_remind_time.setText(list.get(position));
+        String a=list.get(position);
+        String c=  a.substring(0,2)+":"+a.substring(2);
+        holder.tv_remind_time.setText(c);
         holder.ll_remind_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

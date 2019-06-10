@@ -52,6 +52,7 @@ public class App extends Application {
     public static String hostOid = "";                      //当前选择的主机id
     public static String hostCode = "";                      //当前选择的主机编号
     public static boolean isBindAlias = false;          //是否已绑定别名
+    public static String serialNumber;
 
 
     /**
@@ -90,6 +91,7 @@ public class App extends Application {
         languageType = (String)SPUtil.getData(this, "languageType", "");
         hostOid = (String)SPUtil.getData(this, "hostOid", "");
         hostCode = (String)SPUtil.getData(this, "hostCode", "");
+        serialNumber = (String)SPUtil.getData(this, "serialNumber", "");
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);

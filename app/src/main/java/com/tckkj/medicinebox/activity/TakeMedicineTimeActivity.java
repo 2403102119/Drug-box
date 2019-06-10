@@ -104,7 +104,7 @@ public class TakeMedicineTimeActivity extends BaseActivity {
                 break;
             case R.id.rightTxt:
                 Intent intent = new Intent();
-                intent.putExtra("time", hour + ":" + minute);
+                intent.putExtra("time", hour+ minute);
                 setResult(222, intent);
                 finish();
                 break;

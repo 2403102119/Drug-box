@@ -319,8 +319,10 @@ public class MainEngineConnectActivity extends BaseActivity {
                         @Override
                         public void onSuccess(String result) {
                             Bean.LoginMsgAll data = new Gson().fromJson(result, Bean.LoginMsgAll.class);
-
+                            App.serialNumber=data.model.serialNumber;
+                            SPUtil.saveData(MainEngineConnectActivity.this, "serialNumber", data.model.serialNumber);
                             if (1 == data.status){
+
                                 SPUtil.saveBean2Sp(MainEngineConnectActivity.this, data.model, "loginMsg", "loginMsg");
                                 App.loginMsg = data.model;
                                 //如果最新信息中已选择主机与现有连接主机不对应，说明原主机已取消连接，则重置已选中主机

@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +64,7 @@ BoxManagerActivity extends BaseActivity {
     private List<String> timeList = new ArrayList<>();
 
     private Handler handler = new Handler();
-
+    public String oid1;
     private int curPosition;
 
     @Override
@@ -96,6 +97,8 @@ BoxManagerActivity extends BaseActivity {
         banner_medicine_warehouse = findViewById(R.id.banner_medicine_warehouse);
         nrv_remind_time = findViewById(R.id.nrv_remind_time);
         nsv_box_manager = findViewById(R.id.nsv_box_manager);
+
+        getStorehouseDataByNumber(1 + "");
     }
 
     @Override
@@ -199,7 +202,7 @@ BoxManagerActivity extends BaseActivity {
                 Intent remindIntent = new Intent(BoxManagerActivity.this, TakeMedicineTimeActivity.class);
                 remindIntent.putExtra("iaAdd", false);
                 remindIntent.putExtra("hour", time[0]);
-                remindIntent.putExtra("minute", time[1]);
+                remindIntent.putExtra("minute", time[0]);
                 startActivityForResult(remindIntent, 121);
             }
 
@@ -231,10 +234,10 @@ BoxManagerActivity extends BaseActivity {
                 break;
             case R.id.rightTxt:
                 if (App.islogin){
-                    if (StringUtil.isSpace(App.hostOid)){
+                    if (StringUtil.isSpace(oid1)){
                         InputDialogUtil.showHostConnectTipDialog(this);
                     }else {
-                        deleteStorehouseData(App.hostOid);
+                        deleteStorehouseData(oid1);
                     }
                 }else {
                     InputDialogUtil.showLoginTipDialog(this);
@@ -269,7 +272,7 @@ BoxManagerActivity extends BaseActivity {
                 nameDialogUtil2.show();
                 break;
             case R.id.ll_take_someday:      //非日服
-                Intent intent = new Intent(BoxManagerActivity.this, UnTakeEverydayActivity.class);
+                Intent intent = new Intent(BoxManagerActivity.this, UnTakeEverydaytooActivity.class);
                 intent.putExtra("medicineTime", tv_take_medicine_weekdays.getText().toString().trim());
                 startActivityForResult(intent, 111);
                 break;
@@ -285,18 +288,21 @@ BoxManagerActivity extends BaseActivity {
                 String everydayNumber = tv_medicine_number_everyday.getText().toString().trim();
                 String takeWeekdays = tv_take_medicine_weekdays.getText().toString().trim();
                 if (getString(R.string.is_not_set).equals(medicineName) || getString(R.string.is_not_set).equals(expireDate) ||
-                      getString(R.string.is_not_set).equals(takeWeekdays) || "0".equals(addNumber) || "0".equals(everydayNumber) ||
+                        getString(R.string.is_not_set).equals(takeWeekdays) || "0".equals(addNumber) || "0".equals(everydayNumber) ||
                         0 == timeList.size()){
                     toast(getString(R.string.user_info_remind));
                     break;
                 }
                 String times = "";
                 for (int i = 0; i < timeList.size(); i++) {
-                    times += timeList.get(i) + ",";
+                    times += timeList.get(i) + "#";
                 }
-                times.substring(0, times.length() - 1);
+               String a = times.substring(0, times.length());
+                String c = a.substring(0,a.length() - 1);
+                if (takeWeekdays.equals("每天")){
+                    updateMedicineStorehouse(addNumber,oid1, medicineName, everydayNumber, expireDate, "9999",c);
+                }
 
-                updateMedicineStorehouse(addNumber,"oid", medicineName, everydayNumber, expireDate, takeWeekdays,times);
                 break;
         }
     }
@@ -445,31 +451,31 @@ BoxManagerActivity extends BaseActivity {
                 public void run() {
                     httpInterface.updateMedicineStorehouse(dosage, oid, name, dose, termOfValidity,
                             wayOfTaking, takingTime, new MApiResultCallback() {
-                        @Override
-                        public void onSuccess(String result) {
-                            Bean data = new Gson().fromJson(result, Bean.class);
+                                @Override
+                                public void onSuccess(String result) {
+                                    Bean data = new Gson().fromJson(result, Bean.class);
 
-                            if (1 == data.status){
-                                toast(data.message);
-                            }else {
-                                toast(data.message);
-                            }
-                        }
+                                    if (1 == data.status){
+                                        toast(data.message);
+                                    }else {
+                                        toast(data.message);
+                                    }
+                                }
 
-                        @Override
-                        public void onFail(String response) {
+                                @Override
+                                public void onFail(String response) {
 
-                        }
+                                }
 
-                        @Override
-                        public void onError(Call call, Exception exception) {
-                        }
+                                @Override
+                                public void onError(Call call, Exception exception) {
+                                }
 
-                        @Override
-                        public void onTokenError(String response) {
+                                @Override
+                                public void onTokenError(String response) {
 
-                        }
-                    });
+                                }
+                            });
                 }
             });
         }
@@ -493,7 +499,7 @@ BoxManagerActivity extends BaseActivity {
                                 tv_medicine_name.setText(getString(R.string.is_not_set));
                                 tv_drug_expired_date.setText(getString(R.string.is_not_set));
                                 tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
-                                tv_add_medicine_number.setText("0");
+                                tv_add_medicine_number.setText("未设置");
                                 tv_medicine_number_everyday.setText("0");
                                 timeList.clear();
                                 adapter.notifyDataSetChanged();
@@ -549,9 +555,10 @@ BoxManagerActivity extends BaseActivity {
                                 }else {
                                     tv_drug_expired_date.setText(data.model.termOfValidity);
                                 }
+                                oid1 = data.model.oid;
 
                                 tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
-                                tv_add_medicine_number.setText("0");
+                                tv_add_medicine_number.setText("未设置");
                                 if (data.model.dose.equals("")){
 
                                     tv_medicine_number_everyday.setText("0");
@@ -564,14 +571,20 @@ BoxManagerActivity extends BaseActivity {
                                     tv_surplus_medicine_number.setText(data.model.allowance);
                                 }
 
-                                String str=data.model.takingTime;
-                                String[] strArry=str.split("[#]");
-                                for (int i = 0; i < strArry.length; i++) {
-                                    timeList.add(strArry[i]);
+                                if (data.model.takingTime.equals("")){
+                                    timeList.clear();
+                                }else {
+                                    timeList.clear();
+                                    String str=data.model.takingTime;
+                                    String[] strArry=str.split("[#]");
+                                    for (int i = 0; i < strArry.length; i++) {
+                                        timeList.add(strArry[i]);
+                                    }
                                 }
 
 
-                                timeList.clear();
+
+
                                 adapter.notifyDataSetChanged();
 
                                 toast(data.message);
