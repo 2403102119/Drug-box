@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/add_item_lin"
+    android:gravity="center"
+    android:background="#66000000"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:id="@+id/add_popuo"
+        android:background="@drawable/link_man"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
+        android:layout_height="150dp">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        <TextView
+            android:text="输入天数"
+            android:textSize="17sp"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <EditText
+                android:id="@+id/mingzi"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:background="@drawable/yes_fenzu"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp"
+                android:layout_width="match_parent"
+                android:layout_height="34.5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/link_wo"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:id="@+id/cancel"
+                android:text="取消"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <View
+                android:background="#DCDCDC"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:layout_width="1dp"
+                android:layout_height="match_parent">
+
+            </View>
+            <TextView
+                android:id="@+id/confirm"
+                android:text="确定"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
