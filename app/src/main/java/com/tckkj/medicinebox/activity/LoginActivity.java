@@ -236,6 +236,10 @@ public class LoginActivity extends BaseActivity implements AdapterView.OnItemCli
                                 App.loginMsg = data.model;
                                 App.lastAccount = account;
                                 App.lastAreaCode = areaCode;
+                                App.isFirstIn = false;
+                                App.serialNumber = data.model.serialNumber;
+                                SPUtil.saveData(LoginActivity.this, "isFirstIn", false);
+                                SPUtil.saveData(LoginActivity.this, "serialNumber", data.model.serialNumber);
 
                                 if ("1".equals(App.loginMsg.host1_connectionState)){    //如果主机1是连接状态，默认显示主机1选中
                                     SPUtil.saveData(LoginActivity.this, "hostOid", data.model.host1_oid);

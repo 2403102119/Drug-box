@@ -45,7 +45,7 @@ public class StatementMessageActivity extends BaseActivity {
     private List<Map<String, Object>> allMedicineList = new ArrayList<>();
     private List<Map<String, Object>> takeMedicineTimeList = new ArrayList<>();
     private final static int SELECT_DATE_REQUEST_CODE = 21;
-
+   private String a,b;
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContainer(R.layout.activity_statement_message);
@@ -75,6 +75,11 @@ public class StatementMessageActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        a= getIntent().getStringExtra("number");
+        tv_host_number.setText(a);
+        b = getIntent().getStringExtra("name");
+        tv_host_name.setText(b);
+
         for (int i = 0; i < 6; i++) {
             allMedicineList.add(new HashMap<String, Object>());
         }

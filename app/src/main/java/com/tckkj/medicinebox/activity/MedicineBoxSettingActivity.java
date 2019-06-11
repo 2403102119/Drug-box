@@ -29,6 +29,8 @@ import com.tckkj.medicinebox.thread.ThreadPoolManager;
 import com.tckkj.medicinebox.util.NetUtil;
 import com.tckkj.medicinebox.util.SPUtil;
 
+import java.util.HashMap;
+
 import okhttp3.Call;
 
 public class MedicineBoxSettingActivity extends BaseActivity {
@@ -83,7 +85,7 @@ public class MedicineBoxSettingActivity extends BaseActivity {
         rl_main_engine_two = findViewById(R.id.rl_main_engine_two);
 
         dl_medicine_box_setting = findViewById(R.id.dl_medicine_box_setting);
-          //TODO
+        //TODO
         //如果主机1未连接，则不显示，下同理
         if (!"1".equals(App.loginMsg.host1_connectionState)){
             rl_main_engine_one.setVisibility(View.GONE);
@@ -97,7 +99,8 @@ public class MedicineBoxSettingActivity extends BaseActivity {
             img_main_engine_icon_one.setImageResource(R.mipmap.main_engine_check_yes);
             tv_main_engine_name_one.setTextColor(getResources().getColor(R.color.greenText));
             tv_main_engine_content_one.setTextColor(getResources().getColor(R.color.greenText));
-
+            tv_main_engine_content_one.setText(App.loginMsg.host1_nickName);
+            tv_host_name.setText(App.loginMsg.host1_nickName);
             rl_main_engine_two.setBackgroundResource(R.color.white);
             img_main_engine_icon_two.setImageResource(R.mipmap.main_engine_check_no);
             tv_main_engine_name_two.setTextColor(getResources().getColor(R.color.gray));
@@ -109,7 +112,8 @@ public class MedicineBoxSettingActivity extends BaseActivity {
             img_main_engine_icon_two.setImageResource(R.mipmap.main_engine_check_yes);
             tv_main_engine_name_two.setTextColor(getResources().getColor(R.color.greenText));
             tv_main_engine_content_two.setTextColor(getResources().getColor(R.color.greenText));
-
+            tv_main_engine_content_two.setText(App.loginMsg.host2_nickName);
+            tv_host_name.setText(App.loginMsg.host2_nickName);
             rl_main_engine_one.setBackgroundResource(R.color.white);
             img_main_engine_icon_one.setImageResource(R.mipmap.main_engine_check_no);
             tv_main_engine_name_one.setTextColor(getResources().getColor(R.color.gray));
@@ -117,7 +121,6 @@ public class MedicineBoxSettingActivity extends BaseActivity {
             tv_host_number.setText(App.loginMsg.host2_hostNumber);
 
         }
-
 
 
     }
@@ -180,20 +183,36 @@ public class MedicineBoxSettingActivity extends BaseActivity {
             case R.id.ll_user_message:              //用户信息
                 startActivity(new Intent(MedicineBoxSettingActivity.this, UserMessageActivity.class));
                 break;
-            case R.id.ll_medicine_box_manage:       //药盒管理
-                startActivity(new Intent(MedicineBoxSettingActivity.this, BoxManagerActivity.class));
+            case R.id.ll_medicine_box_manage://药盒管理
+                Intent intent =new Intent(MedicineBoxSettingActivity.this,BoxManagerActivity.class);
+                intent.putExtra("number",tv_host_number.getText().toString());
+                intent.putExtra("name",tv_host_name.getText().toString());
+                startActivity(intent);
+
                 break;
             case R.id.ll_remind_setting:            //提醒设置
-                startActivity(new Intent(MedicineBoxSettingActivity.this, RemindSettingActivity.class));
+                Intent intent6 =new Intent(MedicineBoxSettingActivity.this,RemindSettingActivity.class);
+                intent6.putExtra("number",tv_host_number.getText().toString());
+                intent6.putExtra("name",tv_host_name.getText().toString());
+                startActivity(intent6);
                 break;
             case R.id.ll_temporary_get_medicine:    //临时取药
-                startActivity(new Intent(MedicineBoxSettingActivity.this, TemporaryGetMedicineActivity.class));
+                Intent intent7 =new Intent(MedicineBoxSettingActivity.this,TemporaryGetMedicineActivity.class);
+                intent7.putExtra("number",tv_host_number.getText().toString());
+                intent7.putExtra("name",tv_host_name.getText().toString());
+                startActivity(intent7);
                 break;
             case R.id.ll_go_out_setting:            //外出设置
-                startActivity(new Intent(MedicineBoxSettingActivity.this, GoOutSettingActivity.class));
+                Intent intent8 =new Intent(MedicineBoxSettingActivity.this,GoOutSettingActivity.class);
+                intent8.putExtra("number",tv_host_number.getText().toString());
+                intent8.putExtra("name",tv_host_name.getText().toString());
+                startActivity(intent8);
                 break;
             case R.id.ll_medicine_box_pandect:      //药盒总览
-                startActivity(new Intent(MedicineBoxSettingActivity.this, MedicineBoxPandectActivity.class));
+                Intent intent9 =new Intent(MedicineBoxSettingActivity.this,MedicineBoxPandectActivity.class);
+                intent9.putExtra("number",tv_host_number.getText().toString());
+                intent9.putExtra("name",tv_host_name.getText().toString());
+                startActivity(intent9);
                 break;
             case R.id.ll_medicine_knowledge:        //药物知识
                 Intent urlIntent = new Intent(MedicineBoxSettingActivity.this, WebShowActivity.class);
@@ -204,7 +223,10 @@ public class MedicineBoxSettingActivity extends BaseActivity {
                 showTipDialog();
                 break;
             case R.id.ll_statement_message:         //报表信息
-                startActivity(new Intent(MedicineBoxSettingActivity.this, StatementMessageActivity.class));
+                Intent intent10 =new Intent(MedicineBoxSettingActivity.this,StatementMessageActivity.class);
+                intent10.putExtra("number",tv_host_number.getText().toString());
+                intent10.putExtra("name",tv_host_name.getText().toString());
+                startActivity(intent10);
                 break;
             case R.id.rl_main_engine_one:
                 rl_main_engine_one.setBackgroundResource(R.color.mainEngineCheckBg);
@@ -216,7 +238,7 @@ public class MedicineBoxSettingActivity extends BaseActivity {
                 img_main_engine_icon_two.setImageResource(R.mipmap.main_engine_check_no);
                 tv_main_engine_name_two.setTextColor(getResources().getColor(R.color.gray));
                 tv_main_engine_content_two.setTextColor(getResources().getColor(R.color.gray));
-
+                tv_host_name.setText(App.loginMsg.host1_nickName);
                 //选中主机1后保存选中主机信息
                 SPUtil.saveData(this, "hostOid", App.loginMsg.host1_oid);
                 SPUtil.saveData(this, "hostCode", App.loginMsg.host1_hostNumber);
@@ -236,7 +258,7 @@ public class MedicineBoxSettingActivity extends BaseActivity {
                 img_main_engine_icon_one.setImageResource(R.mipmap.main_engine_check_no);
                 tv_main_engine_name_one.setTextColor(getResources().getColor(R.color.gray));
                 tv_main_engine_content_one.setTextColor(getResources().getColor(R.color.gray));
-
+                tv_host_name.setText(App.loginMsg.host2_nickName);
                 //选中主机2后保存选中主机信息
                 SPUtil.saveData(this, "hostOid", App.loginMsg.host2_oid);
                 SPUtil.saveData(this, "hostCode", App.loginMsg.host2_hostNumber);
@@ -256,14 +278,14 @@ public class MedicineBoxSettingActivity extends BaseActivity {
                 startActivity(new Intent(MedicineBoxSettingActivity.this, AboutUsActivity.class));
                 break;
             case R.id.ll_back_connect:         //返回连接
-                Intent intent = new Intent(MedicineBoxSettingActivity.this, MainEngineConnectActivity.class);
-                intent.putExtra("isFromMain", true);
-                startActivity(intent);
+                Intent intent1 = new Intent(MedicineBoxSettingActivity.this, MainEngineConnectActivity.class);
+                intent1.putExtra("isFromMain", true);
+                startActivity(intent1);
                 break;
             case R.id.ll_language_choose:   //语言选择
-                Intent intent1 = new Intent(MedicineBoxSettingActivity.this, LanguageSelectActivity.class);
-                intent1.putExtra("isMain", true);
-                startActivity(intent1);
+                Intent intent2 = new Intent(MedicineBoxSettingActivity.this, LanguageSelectActivity.class);
+                intent2.putExtra("isMain", true);
+                startActivity(intent2);
                 break;
             case R.id.ll_unlogin:           //退出登录
 //                closeDrawerLayout();

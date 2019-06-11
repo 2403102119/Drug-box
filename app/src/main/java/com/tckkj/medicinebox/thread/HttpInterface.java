@@ -276,7 +276,7 @@ public class HttpInterface {
             userClient.AddParam("model.dose", dose);
             userClient.AddParam("model.termOfValidity", termOfValidity);
             userClient.AddParam("model.days", wayOfTaking);
-            userClient.AddParam("remindingTime.takingTime", takingTime);
+            userClient.AddParam("model.takingTime", takingTime);
             userClient.executePost(callback, loadingDialog, context);
         } catch (Exception e) {
             e.printStackTrace();

@@ -25,7 +25,7 @@ import java.util.List;
 public class RemindSettingActivity extends BaseActivity {
     private CheckBox cb_voice_remind, cb_screen_remind, cb_other_remind;
     private LinearLayout ll_voice_remind, ll_screen_remind, ll_volume_setting, ll_other_remind;
-    private TextView tv_add_remind_time;
+    private TextView tv_add_remind_time,tv_host_number,tv_host_name;
     private ClearEditText cet_input_remind_content;
 
     private NiceRecyclerView nrv_remind_time;
@@ -35,7 +35,8 @@ public class RemindSettingActivity extends BaseActivity {
     private RemindTimeAdapter adapter;
 
     private Handler handler = new Handler();
-
+    private String a;
+    private String b;
     private int curPosition = 0;                //点击编辑的位置
 
     @Override
@@ -58,7 +59,8 @@ public class RemindSettingActivity extends BaseActivity {
         cet_input_remind_content = findViewById(R.id.cet_input_remind_content);
         nrv_remind_time = findViewById(R.id.nrv_remind_time);
         nsv_remind_setting = findViewById(R.id.nsv_remind_setting);
-
+        tv_host_number = findViewById(R.id.tv_host_number);
+        tv_host_name = findViewById(R.id.tv_host_name);
         if (cb_other_remind.isChecked()){
             cet_input_remind_content.setEnabled(true);
         }else {
@@ -82,6 +84,10 @@ public class RemindSettingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        a = getIntent().getStringExtra("number");
+        tv_host_number.setText(a);
+        b = getIntent().getStringExtra("name");
+        tv_host_name.setText(b);
         adapter = new RemindTimeAdapter(this, list);
         nrv_remind_time.setAdapter(adapter);
         adapter.setOnItemClickListener(new RemindTimeAdapter.OnItemClickListener() {

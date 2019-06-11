@@ -38,6 +38,8 @@ public class Bean {
         public String oid;
         public String account;
         public String serialNumber;
+        public String host1_nickName;
+        public String host2_nickName;
     }
 
     /*

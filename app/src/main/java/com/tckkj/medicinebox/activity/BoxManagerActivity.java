@@ -66,6 +66,8 @@ BoxManagerActivity extends BaseActivity {
     private Handler handler = new Handler();
     public String oid1;
     private int curPosition;
+    private String a;
+    private String b;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -116,6 +118,8 @@ BoxManagerActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+         a = getIntent().getStringExtra("number");
+         b = getIntent().getStringExtra("name");
 //        list.add(R.mipmap.box_check_no_one);
 //        list.add(R.mipmap.box_check_no_two);
 //        list.add(R.mipmap.box_check_no_three);
@@ -124,7 +128,8 @@ BoxManagerActivity extends BaseActivity {
 //        list.add(R.mipmap.box_check_no_six);
 
 //        getStorehouseDataByNumber("1");
-
+        tv_host_number.setText(a);
+        tv_host_name.setText(b);
         list.add(R.mipmap.box_check_yes_one);
         list.add(R.mipmap.box_check_yes_two);
         list.add(R.mipmap.box_check_yes_three);
@@ -500,7 +505,8 @@ BoxManagerActivity extends BaseActivity {
                                 tv_drug_expired_date.setText(getString(R.string.is_not_set));
                                 tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
                                 tv_add_medicine_number.setText("未设置");
-                                tv_medicine_number_everyday.setText("0");
+                                tv_medicine_number_everyday.setText("未设置");
+                                tv_surplus_medicine_number.setText("0");
                                 timeList.clear();
                                 adapter.notifyDataSetChanged();
 
@@ -556,8 +562,14 @@ BoxManagerActivity extends BaseActivity {
                                     tv_drug_expired_date.setText(data.model.termOfValidity);
                                 }
                                 oid1 = data.model.oid;
+                                 if (data.model.days.equals("9999")){
+                                     tv_take_medicine_weekdays.setText("每天");
+                                 }else if (data.model.days.equals("")){
 
-                                tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
+                                     tv_take_medicine_weekdays.setText(getString(R.string.is_not_set));
+                                 }else {
+                                     tv_take_medicine_weekdays.setText(data.model.days);
+                                 }
                                 tv_add_medicine_number.setText("未设置");
                                 if (data.model.dose.equals("")){
 

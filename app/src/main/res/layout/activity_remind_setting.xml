@@ -25,6 +25,7 @@
             android:layout_height="match_parent" />
 
         <TextView
+            android:id="@+id/tv_host_number"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="165615165615"
@@ -34,6 +35,7 @@
             android:layout_height="match_parent" />
 
         <TextView
+            android:id="@+id/tv_host_name"
             android:layout_width="wrap_content"
             android:text="张三"
             android:textSize="15sp"

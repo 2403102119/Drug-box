@@ -32,6 +32,7 @@ public class MedicineBoxPandectActivity extends BaseActivity {
     private NiceRecyclerView nrv_medicine_box_pandect;
     private MedicineBoxPandectAdapter adapter;
     private List<Map<String, Object>> list = new ArrayList<>();
+    private  String a,b;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -51,6 +52,11 @@ public class MedicineBoxPandectActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+        a= getIntent().getStringExtra("number");
+        tv_host_number.setText(a);
+        b = getIntent().getStringExtra("name");
+        tv_host_name.setText(b);
         for (int i = 0; i < 6; i++) {
             list.add(new HashMap<String, Object>());
         }

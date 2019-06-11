@@ -40,6 +40,7 @@ public class GoOutSettingActivity extends BaseActivity {
     tv_host_number, tv_host_name;
     private Button btn_dispense_medicine_immediately, btn_dispense_medicine_save;
     private Dialog dialog;
+    private String a,b;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -78,6 +79,10 @@ public class GoOutSettingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        a= getIntent().getStringExtra("number");
+        tv_host_number.setText(a);
+        b = getIntent().getStringExtra("name");
+        tv_host_name.setText(b);
         //判断登录、连接主机、获取配药状态
         /*if (App.islogin){
             if (StringUtil.isSpace(App.hostOid)){

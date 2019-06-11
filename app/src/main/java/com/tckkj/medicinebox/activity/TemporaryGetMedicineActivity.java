@@ -2,6 +2,7 @@ package com.tckkj.medicinebox.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.tckkj.medicinebox.R;
@@ -29,6 +30,8 @@ public class TemporaryGetMedicineActivity extends BaseActivity {
     private List<Map<String, Object>> list = new ArrayList<>();
     private boolean checkWarehouse[] = {false, false, false, false, false, false};
     private int medicineNumber[] = {0, 0, 0, 0, 0, 0};
+    private TextView tv_host_name,tv_host_number;
+    private String a,b;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class TemporaryGetMedicineActivity extends BaseActivity {
         title.setText(R.string.temporary_get_medicine);
         rightTxt.setText(R.string.get_medicine);
         rightTxt.setVisibility(View.VISIBLE);
+
+        tv_host_name = findViewById(R.id.tv_host_name);
+        tv_host_number = findViewById(R.id.tv_host_number);
 
         nrv_tem_get_medicine = findViewById(R.id.nrv_tem_get_medicine);
     }
@@ -49,6 +55,11 @@ public class TemporaryGetMedicineActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        a=getIntent().getStringExtra("number");
+        tv_host_number.setText(a);
+        b=getIntent().getStringExtra("name");
+        tv_host_name.setText(b);
+
         for (int i = 0; i < 6; i++) {
             list.add(new HashMap<String, Object>());
         }

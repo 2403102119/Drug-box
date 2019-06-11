@@ -148,7 +148,7 @@ public class MainEngineConnectActivity extends BaseActivity {
                     connectHost("1", App.loginMsg.host1_oid);
                 }else if (btn_connect_main_engine_one.getText().toString().equals("重新绑定")){
                     connectHost("1", App.loginMsg.host1_oid);
-                }else if (btn_connect_main_engine_one.getText().toString().equals("取消")){
+                }else if (btn_connect_main_engine_one.getText().toString().equals("解绑")){
                     connectHost("0", App.loginMsg.host1_oid);
                 }
 
@@ -158,7 +158,7 @@ public class MainEngineConnectActivity extends BaseActivity {
                     connectHost("1", App.loginMsg.host2_oid);
                 }else if (btn_connect_main_engine_two.getText().toString().equals("重新绑定")){
                     connectHost("1", App.loginMsg.host2_oid);
-                }else if (btn_connect_main_engine_two.getText().toString().equals("取消")){
+                }else if (btn_connect_main_engine_two.getText().toString().equals("解绑")){
                     connectHost("0", App.loginMsg.host2_oid);
                 }//连接主机2
 
@@ -285,7 +285,7 @@ public class MainEngineConnectActivity extends BaseActivity {
             tv_state.setText("绑定中");
 
         }else if ("1".equals(App.loginMsg.host1_connectionState)){
-            btn_connect_main_engine_one.setText("取消");
+            btn_connect_main_engine_one.setText("解绑");
             tv_state.setText("已绑定");
         }else {
             btn_connect_main_engine_one.setText(getResources().getString(R.string.connect));
@@ -296,7 +296,7 @@ public class MainEngineConnectActivity extends BaseActivity {
             btn_connect_main_engine_two.setText("重新绑定");
             tv_state_two.setText("绑定中");
         }else if ("1".equals(App.loginMsg.host2_connectionState)){
-            btn_connect_main_engine_two.setText("取消");
+            btn_connect_main_engine_two.setText("解绑");
             tv_state_two.setText("已绑定");
         }else {
             btn_connect_main_engine_two.setText(getResources().getString(R.string.connect));

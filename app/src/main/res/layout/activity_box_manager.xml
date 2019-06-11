@@ -37,7 +37,7 @@
             <TextView
                 android:id="@+id/tv_host_name"
                 android:layout_width="wrap_content"
-                android:text="张三"
+                android:text=""
                 android:textSize="15sp"
                 android:textColor="@color/normalText"
                 android:gravity="center_vertical"
@@ -290,13 +290,13 @@
             android:layout_height="45dp">
 
             <TextView
-                android:gravity="center_vertical"
-                android:textSize="15sp"
-                android:textColor="@color/normalText"
-                android:text="@string/daily_dose"
-                android:layout_width="0dp"
+                android:layout_width="329dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent" />
+                android:gravity="center_vertical"
+                android:text="@string/daily_dose"
+                android:textColor="@color/normalText"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tv_medicine_number_everyday"
