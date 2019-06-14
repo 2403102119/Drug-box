@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.tckkj.medicinebox.App;
 import com.tckkj.medicinebox.R;
+import com.tckkj.medicinebox.util.InputDialogUtil;
 import com.tckkj.medicinebox.util.MUIToast;
 import com.tckkj.medicinebox.util.SPUtil;
 import com.tckkj.medicinebox.util.ZipUtils;
@@ -277,7 +278,8 @@ public class UserClient {
                                     if (status != 9) {
                                         callback.onSuccess(response);
                                     } else{
-                                        sendRedEnvelopes((Activity) context, "", "", "", "");
+//                                        sendRedEnvelopes((Activity) context, "", "", "", "");
+                                        InputDialogUtil.showLoginTipDialog(context);
                                     }
                                 } else {
                                     callback.onFail(response);

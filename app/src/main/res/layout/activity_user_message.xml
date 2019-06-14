@@ -142,6 +142,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/ll_user_message_age"
         android:background="@color/white"
         android:layout_marginTop="10dp"

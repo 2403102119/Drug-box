@@ -1,11 +1,14 @@
 package com.tckkj.medicinebox.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.tckkj.medicinebox.App;
+import com.tckkj.medicinebox.MainActivity;
 import com.tckkj.medicinebox.R;
 import com.tckkj.medicinebox.base.BaseActivity;
 import com.tckkj.medicinebox.entity.Bean;
@@ -25,8 +29,11 @@ import com.tckkj.medicinebox.util.StringUtil;
 import com.tckkj.medicinebox.util.country.Country;
 import com.tckkj.medicinebox.view.ClearEditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cn.addapp.pickers.common.LineConfig;
@@ -44,8 +51,14 @@ public class UserMessageActivity extends BaseActivity {
     private TextView tv_user_message_name, tv_user_message_sex, tv_user_message_birthday,
             tv_user_message_age, tv_emergency_contact_phone_one,tv_emergency_contact_phone_two;
     private Button btn_user_message_save, btn_user_message_empty;
-    private int birYear = 1990, birMonth = 1, birDay = 1;
+    private int birYear = 1900, birMonth = 1, birDay = 1;
     private TextView tv_phone_choose;
+    private String areaCode1;
+    private String areaCode2;
+    private String pho1;
+    private String pho2;
+    private Calendar cal;
+    private int year,month,day;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -67,7 +80,6 @@ public class UserMessageActivity extends BaseActivity {
         tv_emergency_contact_phone_two = findViewById(R.id.tv_emergency_contact_phone_two);
         btn_user_message_save = findViewById(R.id.btn_user_message_save);
         btn_user_message_empty = findViewById(R.id.btn_user_message_empty);
-
        /* if (App.islogin && null != App.loginMsg){
             tv_user_message_name.setText(App.loginMsg.nickName);
         }*/
@@ -88,8 +100,20 @@ public class UserMessageActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        Getuserinformation();
+        getDate();
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 111 && resultCode == Activity.RESULT_OK) {
+            Country country = Country.fromJson(data.getStringExtra("country"));
+            tv_phone_choose.setText("+" + country.code);
+            areaCode1 = "+"+ country.code;
+            areaCode2 = "+"+country.code;
 
+        }
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -97,7 +121,14 @@ public class UserMessageActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.ll_user_message_name:
-                final InputDialogUtil nameDialogUtil = new InputDialogUtil(this, true, getString(R.string.nickname), true, InputType.TYPE_CLASS_TEXT);
+                String x;
+                if (tv_user_message_name.getText().toString().equals("未设置")){
+                    x="";
+                }else {
+                    x=tv_user_message_name.getText().toString();
+                }
+
+                final InputDialogUtil nameDialogUtil = new InputDialogUtil(this, true, getString(R.string.nickname), true,InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT,x);
                 nameDialogUtil.setOnConfirmListener(new InputDialogUtil.OnConfirmListener() {
                     @Override
                     public void onClick(String inputContent) {
@@ -113,11 +144,64 @@ public class UserMessageActivity extends BaseActivity {
                 list.add(getString(R.string.women));
                 Picker(list, getString(R.string.sex_selection));
                 break;
-            case R.id.ll_user_message_birthday:             //选择生日
-                dateSetting();
+            case R.id.ll_user_message_birthday://选择生日
+                int  x0=1990;
+                int  x1=1;
+                int  x2=1;
+                if ("未设置".equals(tv_user_message_birthday.getText().toString())){
+                    x0 = 1990;
+                    x1 =1;
+                    x2 = 1;
+                }else if (tv_user_message_birthday.getText().toString().equals("")){
+                    x0 = 1990;
+                    x1 =1;
+                    x2 = 1;
+                }else {
+                    String[] a9 =tv_user_message_birthday.getText().toString().split("-");
+                    for (int i = 0; i <a9.length ; i++) {
+                        x0 = Integer.parseInt(a9[0]);
+                        x1 =Integer.parseInt(a9[1]);
+                        x2 = Integer.parseInt(a9[2]);
+
+                    }
+                }
+//
+//
+//                dateSetting(x0,x1,x2);
+                DatePickerDialog.OnDateSetListener listener=new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+                        tv_user_message_birthday.setText(year+"-"+(++month)+"-"+dayOfMonth);
+                    }
+
+//                    @Override
+//                    public void onDateSet(DatePicker arg0, int year, int month, int day) {
+//                          //将选择的日期显示到TextView中,因为之前获取month直接使用，所以不需要+1，这个地方需要显示，所以+1
+//                    }
+                };
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                DatePickerDialog dialog=new DatePickerDialog(UserMessageActivity.this, DatePickerDialog.THEME_HOLO_LIGHT,listener,year,month,day);
+                DatePickerDialog dialog=new DatePickerDialog(UserMessageActivity.this, DatePickerDialog.THEME_HOLO_LIGHT,listener,x0,x1-1,x2);
+                //主题在这里！后边三个参数为显示dialog时默认的日期，月份从0开始，0-11对应1-12个月
+                //当结束时间已经选择而且是点击开始时间弹出的picker
+                if(!TextUtils.isEmpty(year + "-" + (month + 1) + "-" + day)){
+                    try {
+                        Date date=sdf.parse(year + "-" + (month + 1) + "-" + day);
+                        //设置最大可选择时间
+                        dialog.getDatePicker().setMaxDate(date.getTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                dialog.show();
                 break;
+
+
+
             case R.id.ll_user_message_age:
-                final InputDialogUtil ageDialogUtil = new InputDialogUtil(this, true, getString(R.string.age), true, InputType.TYPE_CLASS_NUMBER);
+                final InputDialogUtil ageDialogUtil = new InputDialogUtil(this, true, getString(R.string.age), true, InputType.TYPE_CLASS_NUMBER,"");
                 ageDialogUtil.setOnConfirmListener(new InputDialogUtil.OnConfirmListener() {
                     @Override
                     public void onClick(String inputContent) {
@@ -128,7 +212,25 @@ public class UserMessageActivity extends BaseActivity {
                 ageDialogUtil.show();
                 break;
             case R.id.ll_emergency_contact_phone_one:
-                showPhoneInputDialog(getString(R.string.emergency_contact_number1), tv_emergency_contact_phone_one);
+                String b1 = "";
+                String c1 = "+86";
+                if ("未设置".equals(tv_emergency_contact_phone_one.getText().toString()))
+                {
+                    b1="";
+                    c1="+86";
+                } else if (tv_emergency_contact_phone_one.getText().toString().equals("")){
+                    b1="";
+                    c1="+86";
+                }else {
+                    String[] a1 = tv_emergency_contact_phone_one.getText().toString().split(" ");
+
+                    for (int i = 0; i <a1.length ; i++) {
+                        b1 = a1[1];
+                        c1 = a1[0];
+                    }
+                }
+
+                showPhoneInputDialog(getString(R.string.emergency_contact_number1), tv_emergency_contact_phone_one,b1,c1);
                 /*final InputDialogUtil phoneOneDialogUtil = new InputDialogUtil(this, true, getString(R.string.emergency_contact_number1), true, InputType.TYPE_CLASS_PHONE);
                 phoneOneDialogUtil.setOnConfirmListener(new InputDialogUtil.OnConfirmListener() {
                     @Override
@@ -136,11 +238,29 @@ public class UserMessageActivity extends BaseActivity {
                         tv_emergency_contact_phone_one.setText(inputContent);
                         phoneOneDialogUtil.cancel();
                     }
-                });
+                 });
                 phoneOneDialogUtil.show();*/
                 break;
             case R.id.ll_emergency_contact_phone_two:
-                showPhoneInputDialog(getString(R.string.emergency_contact_number2), tv_emergency_contact_phone_two);
+                String d = "";
+                String e = "+86";
+                if ("未设置".equals(tv_emergency_contact_phone_two.getText().toString())){
+                    d="";
+                    e = "+86";
+                }else if ( tv_emergency_contact_phone_two.getText().toString().equals("")){
+                    d="";
+                    e = "+86";
+                }else {
+                    String[] c = tv_emergency_contact_phone_two.getText().toString().split(" ");
+
+                    for (int i = 0; i <c.length ; i++) {
+                        d =c[1];
+                        e = c[0];
+
+                    }
+                }
+
+                showPhoneInputDialog(getString(R.string.emergency_contact_number2), tv_emergency_contact_phone_two,d,e);
                 /*final InputDialogUtil phoneTwoDialogUtil = new InputDialogUtil(this, true, getString(R.string.emergency_contact_number2), true, InputType.TYPE_CLASS_PHONE);
                 phoneTwoDialogUtil.setOnConfirmListener(new InputDialogUtil.OnConfirmListener() {
                     @Override
@@ -158,8 +278,30 @@ public class UserMessageActivity extends BaseActivity {
                 String birthDate = tv_user_message_birthday.getText().toString().trim();
                 String phone1 = tv_emergency_contact_phone_one.getText().toString().trim();
                 String phone2 = tv_emergency_contact_phone_two.getText().toString().trim();
+                if (phone1.equals("")){
+                    areaCode1= "";
+                    pho1 = "";
+                }else {
+                    String[] a=phone1.split(" ");
+                    for (int i = 0; i < a.length; i++) {
+                        areaCode1=a[0].substring(1);
+                        pho1 = a[1];
+                    }
+                }
+
+                if (phone2.equals("")){
+                    areaCode2= "";
+                    pho2 = "";
+                }else {
+
+                    String[] b=phone2.split(" ");
+                    for (int i = 0; i < b.length; i++) {
+                        areaCode2=b[0].substring(1);
+                        pho2 = b[1];
+                    }
+                }
+
                 if (getString(R.string.is_not_set).equals(nickName) || getString(R.string.is_not_set).equals(sex) ||
-                        getString(R.string.is_not_set).equals(age) ||
                         getString(R.string.is_not_set).equals(birthDate) || getString(R.string.is_not_set).equals(phone1)){
                     toast(getString(R.string.user_info_remind));
                     break;
@@ -182,29 +324,33 @@ public class UserMessageActivity extends BaseActivity {
                     if (StringUtil.isSpace(App.hostOid)){
                         InputDialogUtil.showHostConnectTipDialog(this);
                     }else {
-                        updateUserInfo(App.hostOid, nickName, sexCode, age, birthDate, phone1, phone2);
+                        updateUserInfo(nickName, sexCode,birthDate, pho1, pho2,areaCode1,areaCode2);
                     }
                 }else {
                     InputDialogUtil.showLoginTipDialog(this);
                 }
+
                 break;
             case R.id.btn_user_message_empty:
-//                deleteUserInfo();
-
-                tv_user_message_name.setText(R.string.is_not_set);
-                tv_user_message_sex.setText(R.string.is_not_set);
-                tv_user_message_birthday.setText(R.string.is_not_set);
-                tv_user_message_age.setText(R.string.is_not_set);
-                tv_emergency_contact_phone_one.setText(R.string.is_not_set);
-                tv_emergency_contact_phone_two.setText(R.string.is_not_set);
+                deleteUserInfo();
                 break;
         }
     }
+    //获取当前日期
+    private void getDate() {
+        cal=Calendar.getInstance();
+        year=cal.get(Calendar.YEAR);       //获取年月日时分秒
+        Log.i("wxy","year"+year);
+        month=cal.get(Calendar.MONTH);   //获取到的月份是从0开始计数
+        day=cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+
 
     /*
     * 展示联系人填写弹窗
     * */
-    private void showPhoneInputDialog(String title, TextView tv) {
+    private void showPhoneInputDialog(String title, TextView tv,String b,String c) {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_phone_input, null);
         Dialog dialog = new Dialog(this, R.style.Dialog);
         dialog.setContentView(view);
@@ -215,7 +361,8 @@ public class UserMessageActivity extends BaseActivity {
         final LinearLayout ll_phone_choose = view.findViewById(R.id.ll_phone_choose);
         tv_phone_choose = view.findViewById(R.id.tv_phone_choose);
         tv_input_title.setText(title);
-
+        cet_phone.setText(b);
+        tv_phone_choose.setText(c);
         ll_phone_choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,41 +373,39 @@ public class UserMessageActivity extends BaseActivity {
         btn_input_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (StringUtil.isSpace(cet_phone.getText().toString())){
-                    toast(getString(R.string.please_input_content));
-                    return;
-                }
-
-                tv.setText(tv_phone_choose.getText().toString().trim() + " " + cet_phone.getText().toString().trim());
+//                if (StringUtil.isSpace(cet_phone.getText().toString())){
+//
+//                    toast(getString(R.string.please_input_content));
+//                    return;
+//                }
+                    if (cet_phone.getText().toString().equals("")){
+                        tv.setText("");
+                    }else {
+                        tv.setText(tv_phone_choose.getText().toString().trim() + " " + cet_phone.getText().toString().trim());
+                    }
                 dialog.cancel();
             }
         });
         dialog.show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 111 && resultCode == Activity.RESULT_OK) {
-            Country country = Country.fromJson(data.getStringExtra("country"));
-            tv_phone_choose.setText("+" + country.code);
-        }
-    }
+
 
     /*
     * 设置生日
     * */
-    private void dateSetting() {
+    private void dateSetting(int x,int x1,int x2) {
         Calendar cal= Calendar.getInstance();
         DatePicker datePicker = new DatePicker(this);
         datePicker.setRangeStart(1900, 1,1);    //设置起始选择时间
         datePicker.setRangeEnd(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DATE));    //设置选择的结束时间
         datePicker.setLabel(getString(R.string.year), getString(R.string.month), getString(R.string.day));
-        datePicker.setSelectedItem(birYear, birMonth, birDay);             //设置默认显示时间
+        datePicker.setSelectedItem(x, x1, x2);             //设置默认显示时间
         datePicker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
             @Override
             public void onDatePicked(String s, String s1, String s2) {
                 tv_user_message_birthday.setText(s + "-" + s1 + "-" + s2);
+
                 birYear = Integer.parseInt(s);
                 birMonth = Integer.parseInt(s1);
                 birDay = Integer.parseInt(s2);
@@ -306,19 +451,77 @@ public class UserMessageActivity extends BaseActivity {
     }
 
     /*
-     * App5/修改用户信息 >
+     * App6/获取用户资料 >
      * */
-    private void updateUserInfo(final String oid, final String nickName, final String sex, final String age, final String date, final String phone1, final String phone2){
+    private void Getuserinformation(){
         if (NetUtil.isNetWorking(this)){
             ThreadPoolManager.getInstance().getNetThreadPool().execute(new Runnable() {
                 @Override
                 public void run() {
-                    httpInterface.updateUserInfo(oid, nickName, sex, age, date, phone1, phone2, new MApiResultCallback() {
+                    httpInterface.Getuserinformation(new MApiResultCallback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            Bean.Get_user_information data = new Gson().fromJson(result, Bean.Get_user_information.class);
+                            if (data.status==1){
+                                tv_user_message_name.setText(data.model.nickName);
+                                if (data.model.sex.equals("1")){
+                                    tv_user_message_sex.setText("男");
+                                }else if (data.model.sex.equals("2")){
+                                    tv_user_message_sex.setText("女");
+                                }else {
+                                    tv_user_message_sex.setText("");
+                                }
+
+                                tv_user_message_birthday.setText(data.model.date);
+                                tv_emergency_contact_phone_one.setText(data.model.areaCode1+" "+data.model.phone1);
+                                tv_emergency_contact_phone_two.setText(data.model.areaCode2+" "+data.model.phone2);
+                                toast(data.message);
+                      //TODO
+//                                Intent intent =new Intent();
+//                                intent.putExtra("namehei",data.model.nickName);
+//                                setResult(222, intent);
+//                                finish();
+                            }else {
+                                toast(data.message);
+                            }
+                        }
+
+                        @Override
+                        public void onFail(String response) {
+
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception exception) {
+
+                        }
+
+                        @Override
+                        public void onTokenError(String response) {
+
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    /*
+     * App14/修改用户信息 >
+     * */
+    private void updateUserInfo( final String nickName, final String sex, final String date, final String phone1, final String phone2,final String areaCode1,final String areaCode2){
+        if (NetUtil.isNetWorking(this)){
+            ThreadPoolManager.getInstance().getNetThreadPool().execute(new Runnable() {
+                @Override
+                public void run() {
+                    httpInterface.updateUserInfo(nickName, sex, date, phone1, phone2,areaCode1,areaCode2, new MApiResultCallback() {
                         @Override
                         public void onSuccess(String result) {
                             Bean.ChangeUserMsgAll data = new Gson().fromJson(result, Bean.ChangeUserMsgAll.class);
 
                             if ("1".equals(data.status)){
+                                Getuserinformation();
+
                                 toast(data.message);
                             }else {
                                 toast(data.message);
@@ -347,7 +550,7 @@ public class UserMessageActivity extends BaseActivity {
 
 
     /*
-     * App6/清空用户资料 >
+     * App15/清空用户资料 >
      * */
     private void deleteUserInfo(){
         if (NetUtil.isNetWorking(this)){
@@ -360,6 +563,12 @@ public class UserMessageActivity extends BaseActivity {
                             Bean data = new Gson().fromJson(result, Bean.class);
 
                             if ("1".equals(data.status)){
+                                tv_user_message_name.setText(R.string.is_not_set);
+                                tv_user_message_sex.setText(R.string.is_not_set);
+                                tv_user_message_birthday.setText(R.string.is_not_set);
+                                tv_user_message_age.setText(R.string.is_not_set);
+                                tv_emergency_contact_phone_one.setText(R.string.is_not_set);
+                                tv_emergency_contact_phone_two.setText(R.string.is_not_set);
                                 toast(data.message);
                             }else {
                                 toast(data.message);

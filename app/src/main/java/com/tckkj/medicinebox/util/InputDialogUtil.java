@@ -20,7 +20,7 @@ public class InputDialogUtil {
 
     private OnConfirmListener onConfirmListener;
 
-    public InputDialogUtil(final Context context, boolean isShowTitle, String title, boolean isCancelTouchOutside, int inputType) {
+    public InputDialogUtil(final Context context, boolean isShowTitle, String title, boolean isCancelTouchOutside, int inputType,String text) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_input, null);
         dialog = new Dialog(context, R.style.Dialog);
         dialog.setContentView(view);
@@ -28,8 +28,8 @@ public class InputDialogUtil {
         TextView tv_input_title = view.findViewById(R.id.tv_input_title);
         Button btn_input_confirm = view.findViewById(R.id.btn_input_confirm);
         final ClearEditText cet_input_content = view.findViewById(R.id.cet_input_content);
-
         cet_input_content.setInputType(inputType);
+        cet_input_content.setText(text);
 
         if (isShowTitle) {
             tv_input_title.setText(title);
@@ -78,6 +78,10 @@ public class InputDialogUtil {
             public void onClick(View v) {
                 dialog.cancel();
                 App.finishRealAllActivity();
+                SPUtil.saveData(context, "token", "");
+                SPUtil.saveData(context,"islogin",false);
+                App.token="";
+                App.islogin=false;
                 context.startActivity(new Intent(context, LoginActivity.class));
             }
         });

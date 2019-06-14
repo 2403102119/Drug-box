@@ -101,19 +101,19 @@ public class HttpInterface {
     }
 
     /*
-     * App5/修改用户信息 >
+     * App14/修改用户信息 >
      * */
-    public void updateUserInfo(String oid, String nickName, String sex, String age, String date, String phone1, String phone2, MApiResultCallback callback) {
+    public void updateUserInfo( String nickName, String sex,  String date, String phone1, String phone2,String areaCode1,String areaCode2, MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.updateUserInfo);
         try {
             userClient.AddParam("token", App.token);
-            userClient.AddParam("model.oid", oid);
             userClient.AddParam("model.nickName", nickName);
             userClient.AddParam("model.sex", sex);
-            userClient.AddParam("model.age", age);
             userClient.AddParam("model.date", date);
             userClient.AddParam("model.phone1", phone1);
+            userClient.AddParam("model.areaCode1", areaCode1);
             userClient.AddParam("model.phone2", phone2);
+            userClient.AddParam("model.areaCode2", areaCode2);
             userClient.executePost(callback, loadingDialog, context);
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,7 +121,7 @@ public class HttpInterface {
     }
 
     /*
-     * App6/清空用户资料 >
+     * App15/清空用户资料 >
      * */
     public void deleteUserInfo(MApiResultCallback callback) {
         UserClient userClient = new UserClient(UriUtil.deleteUserInfo);
@@ -373,6 +373,18 @@ public class HttpInterface {
         try {
             userClient.AddParam("token", App.token);
             userClient.AddParam("model.oid", oid);
+            userClient.executePost(callback, loadingDialog, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+     * App13/获取用户主机信息 >
+     * */
+    public void Getuserinformation( MApiResultCallback callback) {
+        UserClient userClient = new UserClient(UriUtil.Getuserinformation);
+        try {
+            userClient.AddParam("token", App.token);
             userClient.executePost(callback, loadingDialog, context);
         } catch (Exception e) {
             e.printStackTrace();

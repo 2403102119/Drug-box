@@ -121,4 +121,20 @@ public class Bean {
          public String serialNumber;
          public String dose;
     }
+
+    public class Get_user_information{
+        public get_user model;
+        public int status;
+        public String message;
+    }
+    public class get_user{
+         public String sex;
+         public String nickName;
+         public String oid;
+         public String areaCode2;
+         public String areaCode1;
+         public String phone2;
+         public String date;
+         public String phone1;
+    }
 }

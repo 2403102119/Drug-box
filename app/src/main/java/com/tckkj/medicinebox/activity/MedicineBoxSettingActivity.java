@@ -2,6 +2,7 @@ package com.tckkj.medicinebox.activity;
 /*
 * 药盒设置
 * */
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import com.tckkj.medicinebox.thread.MApiResultCallback;
 import com.tckkj.medicinebox.thread.ThreadPoolManager;
 import com.tckkj.medicinebox.util.NetUtil;
 import com.tckkj.medicinebox.util.SPUtil;
+import com.tckkj.medicinebox.util.country.Country;
 
 import java.util.HashMap;
 
@@ -176,12 +178,26 @@ public class MedicineBoxSettingActivity extends BaseActivity {
 //        MainEngineConnectActivity.instants.getNewUserMessage();
 
     }
+    //TODO
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == 121 && resultCode == 222) {
+//              if (null!=data){
+//                  tv_host_name.setText(data.getStringExtra("namehei"));
+//
+//              }
+//
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.ll_user_message:              //用户信息
-                startActivity(new Intent(MedicineBoxSettingActivity.this, UserMessageActivity.class));
+            case R.id.ll_user_message://用户信息
+                Intent intent78=new Intent(MedicineBoxSettingActivity.this,UserMessageActivity.class);
+                startActivityForResult(intent78, 121);
+
                 break;
             case R.id.ll_medicine_box_manage://药盒管理
                 Intent intent =new Intent(MedicineBoxSettingActivity.this,BoxManagerActivity.class);

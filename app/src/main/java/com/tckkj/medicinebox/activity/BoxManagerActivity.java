@@ -49,8 +49,7 @@ import okhttp3.Call;
 /*
 * 药盒管理
 * */
-public class
-BoxManagerActivity extends BaseActivity {
+public class BoxManagerActivity extends BaseActivity {
     private LinearLayout ll_medicine_name, ll_drug_expired_date, ll_add_medicine_number,
             ll_medicine_number_everyday, ll_take_someday, ll_take_medicine_time;
     private MZBannerView banner_medicine_warehouse;
@@ -68,6 +67,7 @@ BoxManagerActivity extends BaseActivity {
     private int curPosition;
     private String a;
     private String b;
+    private String c;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -101,6 +101,7 @@ BoxManagerActivity extends BaseActivity {
         nsv_box_manager = findViewById(R.id.nsv_box_manager);
 
         getStorehouseDataByNumber(1 + "");
+        c=1+"";
     }
 
     @Override
@@ -180,6 +181,7 @@ BoxManagerActivity extends BaseActivity {
 
                 }
                 tv_medicine_warehouse_code.setText(position + 1 + "");
+                c=position + 1 + "";
                 getStorehouseDataByNumber(position + 1 + "");
             }
 
@@ -202,12 +204,15 @@ BoxManagerActivity extends BaseActivity {
             public void onItemClick(int position) {
                 curPosition = position;
                 String timeStr = timeList.get(position);
-                String time[] = timeStr.split(":");
+//                String time[] = timeStr.split(":");
+                String hour = timeStr.substring(0,2);
+                String minute = timeStr.substring(2);
+
 
                 Intent remindIntent = new Intent(BoxManagerActivity.this, TakeMedicineTimeActivity.class);
                 remindIntent.putExtra("iaAdd", false);
-                remindIntent.putExtra("hour", time[0]);
-                remindIntent.putExtra("minute", time[0]);
+                remindIntent.putExtra("hour", hour);
+                remindIntent.putExtra("minute", minute);
                 startActivityForResult(remindIntent, 121);
             }
 
@@ -255,7 +260,7 @@ BoxManagerActivity extends BaseActivity {
                 dateSetting();
                 break;
             case R.id.ll_add_medicine_number:
-                final InputDialogUtil nameDialogUtil = new InputDialogUtil(this, true, getString(R.string.dosage_for_this_addition), true, InputType.TYPE_CLASS_NUMBER);
+                final InputDialogUtil nameDialogUtil = new InputDialogUtil(this, true, getString(R.string.dosage_for_this_addition), true, InputType.TYPE_CLASS_NUMBER,"");
                 nameDialogUtil.setOnConfirmListener(new InputDialogUtil.OnConfirmListener() {
                     @Override
                     public void onClick(String inputContent) {
@@ -266,7 +271,7 @@ BoxManagerActivity extends BaseActivity {
                 nameDialogUtil.show();
                 break;
             case R.id.ll_medicine_number_everyday:
-                final InputDialogUtil nameDialogUtil2 = new InputDialogUtil(this, true, getString(R.string.daily_dose), true, InputType.TYPE_CLASS_NUMBER);
+                final InputDialogUtil nameDialogUtil2 = new InputDialogUtil(this, true, getString(R.string.daily_dose), true, InputType.TYPE_CLASS_NUMBER,"");
                 nameDialogUtil2.setOnConfirmListener(new InputDialogUtil.OnConfirmListener() {
                     @Override
                     public void onClick(String inputContent) {
@@ -298,14 +303,21 @@ BoxManagerActivity extends BaseActivity {
                     toast(getString(R.string.user_info_remind));
                     break;
                 }
+                if (addNumber.equals("未设置")){
+                    addNumber="0";
+
+                }
                 String times = "";
                 for (int i = 0; i < timeList.size(); i++) {
                     times += timeList.get(i) + "#";
                 }
                String a = times.substring(0, times.length());
                 String c = a.substring(0,a.length() - 1);
+
                 if (takeWeekdays.equals("每天")){
                     updateMedicineStorehouse(addNumber,oid1, medicineName, everydayNumber, expireDate, "9999",c);
+                }else{
+                    updateMedicineStorehouse(addNumber,oid1, medicineName, everydayNumber, expireDate, takeWeekdays,c);
                 }
 
                 break;
@@ -362,13 +374,14 @@ BoxManagerActivity extends BaseActivity {
     private void dateSetting() {
         Calendar cal= Calendar.getInstance();
         DatePicker datePicker = new DatePicker(this);
-        datePicker.setRangeStart(cal.get(Calendar.YEAR), 1, cal.get(Calendar.DATE));    //设置起始选择时间
+        datePicker.setRangeStart(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DATE));    //设置起始选择时间
         datePicker.setRangeEnd(2100, 12, 31);    //设置选择的结束时间
         datePicker.setSelectedItem(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DATE));             //设置默认显示时间
         datePicker.setCanLoop(false);
         datePicker.setLabel(getString(R.string.year), getString(R.string.month), getString(R.string.day));
         datePicker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
             @Override
+
             public void onDatePicked(String s, String s1, String s2) {
                 tv_drug_expired_date.setText(s + "-" + s1 + "-" + s2);
             }
@@ -437,7 +450,7 @@ BoxManagerActivity extends BaseActivity {
     }
 
     /**
-     * App17/药仓新增、添加或更换药品 >
+     * App11/药仓新增、添加或更换药品 >
      *
      * @param dosage                本次加药量
      * @param oid                   药仓表 主键
@@ -465,6 +478,8 @@ BoxManagerActivity extends BaseActivity {
                                     }else {
                                         toast(data.message);
                                     }
+                                    getStorehouseData(c, App.hostOid);
+
                                 }
 
                                 @Override
@@ -509,7 +524,6 @@ BoxManagerActivity extends BaseActivity {
                                 tv_surplus_medicine_number.setText("0");
                                 timeList.clear();
                                 adapter.notifyDataSetChanged();
-
                                 toast(data.message);
                             }else {
                                 toast(data.message);
@@ -571,6 +585,8 @@ BoxManagerActivity extends BaseActivity {
                                      tv_take_medicine_weekdays.setText(data.model.days);
                                  }
                                 tv_add_medicine_number.setText("未设置");
+
+
                                 if (data.model.dose.equals("")){
 
                                     tv_medicine_number_everyday.setText("0");

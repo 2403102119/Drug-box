@@ -10,8 +10,6 @@ public class UriUtil {
     public static String addUser = ip + "action/baseUser/addUser";//App2/用户注册 >
     public static String userLogin = ip + "action/baseUser/userLogin";//App3/用户登录 > 使用用户名+密码登录
     public static String updateUserPasswordByAccount = ip + "action/baseUser/updateUserPasswordByAccount";//App4/忘记密码 >
-    public static String updateUserInfo = ip + "action/baseHost/updateUserInfo";//App5/修改用户信息 >
-    public static String deleteUserInfo = ip + "action/baseUser/deleteUserInfo";//App6/清空用户资料 >
     public static String getNewUserMessage = ip + "action/baseUser/getNewUserMessage";//App5/根据token获取最新账户信息 >
     public static String getHostListByNumber = ip + "action/baseHost/getHostByNumber";//App6/根据主机编号搜索主机列表 >
     public static String connectHost = ip + "action/baseHost/connectHost";//App7/连接主机 >
@@ -20,6 +18,9 @@ public class UriUtil {
     public static String getStorehouseData = ip + "action/baseMedicineStorehouse/getMedicineStorehouse";//App10/根据主机号及药仓序号获取药仓数据 >
     public static String updateMedicineStorehouse = ip + "action/baseMedicineStorehouse/updateMedicineStorehouse";//App11/药仓新增、添加或更换药品 >
     public static String deleteStorehouseData = ip + "action/baseMedicineStorehouse/deleteMedicineStorehouse";//App12/药仓清空数据 >
+    public static String Getuserinformation = ip + "action/baseHostUserInfo/getHostUserInfo";//App13/获取主机用户信息 >
+    public static String updateUserInfo = ip + "action/baseHostUserInfo/updateHostUserInfo";//App14/修改用户信息 >
+    public static String deleteUserInfo = ip + "action/baseHostUserInfo/deleteHostUserInfo";//App15/清空用户资料 >
 
     public static String getDrugName = ip + "action/baseSystemData/getDrugName";//App12/根据药品条码值获取药品名字 >
     public static String getDrugRecordingList = ip + "action/baseDrugRecording/getDrugRecordingList";//App13/根据服药时段获取服药率数据 >
