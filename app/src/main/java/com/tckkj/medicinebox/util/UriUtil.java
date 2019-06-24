@@ -2,8 +2,8 @@ package com.tckkj.medicinebox.util;
 
 public class UriUtil {
 
-    public static String ip = "http:/47.106.229.1:8080/MedicineBox/";
-//    public static String ip = "http://192.168.0.140:8080/MedicineBox/";
+    public static String ip = "http:/47.106.229.1:8080/MedicineBox/";//服务器
+//    public static String ip = "http://192.168.0.140:8080/MedicineBox/";// 本地
 
 
     public static String sendYzm = ip + "action/baseUser/sendYzm";//App1/获取验证码 >

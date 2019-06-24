@@ -31,6 +31,7 @@ import okhttp3.Call;
 * Author：李迪迦
 * Date：2019.6.4
 * */
+
 public class MainEngineConnectActivity extends BaseActivity {
     private RelativeLayout rl_main_engine_one, rl_main_engine_two,rl_main_engine;
     private Button btn_connect_main_engine_one, btn_connect_main_engine_two, btn_connect_main_engine,
@@ -328,7 +329,7 @@ public class MainEngineConnectActivity extends BaseActivity {
                                 //如果最新信息中已选择主机与现有连接主机不对应，说明原主机已取消连接，则重置已选中主机
                                 if (!data.model.host1_oid.equals(App.hostOid) && !data.model.host2_oid.equals(App.hostOid)){
                                     App.hostOid = "";
-                                    //如果主机连接取消，重置已选中主机
+                                    //如果主机连接取消，重置已选中主机 +
                                 }else if ((data.model.host1_oid.equals(App.hostOid) && "2".equals(data.model.host1_connectionState)) ||
                                         (data.model.host2_oid.equals(App.hostOid) && "2".equals(data.model.host2_connectionState))){
                                     App.hostOid = "";
